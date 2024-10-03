@@ -18,26 +18,26 @@ class finalcoursework {
     static String numberid;
     static boolean isvalidate;
 
-    static int tempMcount=0;
-    static int tempScount=0;
-    static int tempXScount=0;
-    static int tempLcount=0;
-    static int tempXLcount=0;
-    static int tempXXLcount=0;
+    static int tempMcount = 0;
+    static int tempScount = 0;
+    static int tempXScount = 0;
+    static int tempLcount = 0;
+    static int tempXLcount = 0;
+    static int tempXXLcount = 0;
 
-    static double Mamount=0;
-    static double Samount=0;
-    static double XSamount=0;
-    static double Lamount=0;
-    static double XLamount=0;
-    static double XXLamount=0;
+    static double Mamount = 0;
+    static double Samount = 0;
+    static double XSamount = 0;
+    static double Lamount = 0;
+    static double XLamount = 0;
+    static double XXLamount = 0;
+    static double Totalamount = 0;
 
     public static void main(String[] args) {
-        sizeoftshirt();
+
         Scanner input = new Scanner(System.in);
 
-        System.out.println(
-                " /$$$$$$$$                 /$$       /$$                            /$$$$$$  /$$                          ");
+        System.out.println(" /$$$$$$$$                 /$$       /$$                            /$$$$$$  /$$                          ");
         System.out.println(
                 "| $$_____/                | $$      |__/                           /$$__  $$| $$                          ");
         System.out.println(
@@ -59,12 +59,10 @@ class finalcoursework {
         System.out.println(
                 "                                                                                                |__/      ");
 
-        System.out.println(
-                "\n\n_____________________________________________________________________________________________________________\n\n");
+        System.out.println( "\n\n_____________________________________________________________________________________________________________\n\n");
 
-        System.out
-                .println("\t\t[1]place Order                                                      [2]Search Customrer");
-        System.out.println("\t\t[3]Search Order                                                     [4]View Reports");
+        System.out.println("\t\t[1]place Order                                                      [2]Search Customrer\n");
+        System.out.println("\t\t[3]Search Order                                                     [4]View Reports\n");
         System.out.println("\t\t[5]Set Order Status                                                 [6]Delete Order");
 
         System.out.print("\n\nInput Option : ");
@@ -201,7 +199,7 @@ class finalcoursework {
                 amount = 900 * QTY;
                 break;
             case "L":
-                amount = 900 * QTY;
+                amount = 1000 * QTY;
                 break;
             case "XL":
                 amount = 11000 * QTY;
@@ -246,6 +244,9 @@ class finalcoursework {
         for (int i = 0; i < tshirtsizearray.length; i++) {
             temptshirtsizearray[i] = tshirtsizearray[i];
         }
+        for (int i = 0; i < qtyarray.length; i++) {
+            tempqty[i] = qtyarray[i];
+        }
 
         tempidarray[tempidarray.length - 1] = newOrderID;
         idarray = tempidarray;
@@ -264,7 +265,9 @@ class finalcoursework {
 
         System.out.println(Arrays.toString(contactnumber));
         System.out.println(Arrays.toString(idarray));
-
+        System.out.println(Arrays.toString(tshirtsizearray));
+        System.out.println(Arrays.toString(amountarray));
+        System.out.println(Arrays.toString(qtyarray));
         System.out.println("order placed");
     }
 
@@ -296,43 +299,72 @@ class finalcoursework {
         System.out.print("Enter Customer Phone Number :");
         numberid = input.nextLine();
         searchcontact();
-        
+
     }
 
     public static void searchcontact() {
-        
-        for (int i = 0; i < contactnumber.length; i++) {
-           
-            if (numberid.equals(contactnumber[i])) {
-               
 
-                System.out.println("correct");
-                if(tshirtsizearray[i].equals("M")){
-                    tempMcount= tempMcount + qtyarray[i]; 
-                }else if(tshirtsizearray[i].equals("XS")){
-                    tempXScount= tempXScount + qtyarray[i]; 
-                }else if(tshirtsizearray[i].equals("S")){
-                    tempScount= tempScount + qtyarray[i]; 
-                }else if(tshirtsizearray[i].equals("L")){
-                    tempLcount= tempLcount + qtyarray[i]; 
-                }else if(tshirtsizearray[i].equals("XL")){
-                    tempXLcount= tempXLcount + qtyarray[i]; 
-                }else if(tshirtsizearray[i].equals("XXL")){
-                    tempXXLcount= tempXXLcount + qtyarray[i]; 
+        for (int i = 0; i < contactnumber.length; i++) {
+
+            if (numberid.equals(contactnumber[i])) {
+
+                if (tshirtsizearray[i].equals("M")) {
+                    tempMcount = tempMcount + qtyarray[i];
+
+                } else if (tshirtsizearray[i].equals("XS")) {
+                    tempXScount = tempXScount + qtyarray[i];
+                }else if (tshirtsizearray[i].equals("S")) {
+                    tempScount = tempScount + qtyarray[i];
+                } else if (tshirtsizearray[i].equals("L")) {
+                    tempLcount = tempLcount + qtyarray[i];
+                } else if (tshirtsizearray[i].equals("XL")) {
+                    tempXLcount = tempXLcount + qtyarray[i];
+                } else if (tshirtsizearray[i].equals("XXL")) {
+                    tempXXLcount = tempXXLcount + qtyarray[i];
                 }
 
             } else {
 
             }
-
-
             
         }
-        System.out.println(tempMcount);
+        System.out.println("L"+tempLcount);
+        System.out.println("M"+tempMcount);
+        System.out.println("S"+tempScount);
+        System.out.println("XL"+tempXLcount);
+        System.out.println("XS"+tempXScount);
+
+        printresult();
+
+    }
+
+    public static void printresult(){
+        Mamount = tempMcount * 900;
+        XLamount = tempXLcount * 1100;
+        XXLamount = tempXXLcount * 1200;
+        XSamount = tempXScount * 600;
+        Samount = tempScount * 800;
+        Lamount = tempLcount * 1000;
+        Totalamount = Mamount + XLamount + XXLamount + XSamount + Samount + Lamount;
+
+        System.out.printf("%-9s+%13s", "+------+-------", "------------+");
+        System.out.printf("%-9s|%13s", "\n| Size | QTY   ", " Amount |");
+        System.out.printf("%-9s+%13s", "\n+------+-------", "------------+");
+        System.out.println();
+        System.out.printf("| %-4s | %-5d | %10.2f |\n", "M", tempMcount, Mamount);
+        System.out.printf("| %-4s | %-5d | %10.2f |\n", "XL", tempXLcount, XLamount);
+        System.out.printf("| %-4s | %-5d | %10.2f |\n", "XXL", tempXXLcount, XXLamount);
+        System.out.printf("| %-4s | %-5d | %10.2f |\n", "XS", tempXScount, XSamount);
+        System.out.printf("| %-4s | %-5d | %10.2f |\n", "S", tempScount, Samount);
+        System.out.printf("| %-4s | %-5d | %10.2f |\n", "L", tempLcount, Lamount);
+        System.out.printf("+------+-------+------------+\n");
+        System.out.printf("%-1s|%11.2f |", "| Total Amount ", Totalamount);
+        System.out.printf("\n+--------------+------------+\n");
+
         Scanner input = new Scanner(System.in);
         System.out.print("\nEnter Customer Phone Number :");
         numberid = input.nextLine();
-        
+
     }
 
     public static void viewreports() {
@@ -352,36 +384,39 @@ class finalcoursework {
     }
 
     public static void sizeoftshirt() {
-        
+
         // System.out.printf("%-17s+%-18s+%20s","+----------------","------------------","-------------------+");
-        // System.out.printf("%-18s|%-18s|%20s", "\n|      Size      ", "       QTY     ", "      Amount      |");
+        // System.out.printf("%-18s|%-18s|%20s", "\n| Size ", " QTY ", " Amount |");
         // System.out.printf("%19s+%-18s+%20s","\n+----------------","------------------","-------------------+");
         // System.out.printf("%-18s|%-18s|%20s","\n|","","|");
-        // System.out.printf("%-18s|%-18s|%20s","\n|  M","  ",tempMcount," ","|");
+        // System.out.printf("%-18s|%-18s|%20s","\n| M"," ",tempMcount," ","|");
 
+        // Mamount = tempMcount * 900;
+        // XLamount = tempXLcount * 1100;
+        // XXLamount = tempXXLcount * 1200;
+        // XSamount = tempXScount * 600;
+        // Samount = tempScount * 800;
+        // Lamount = tempLcount * 1000;
+        // Totalamount = Mamount + XLamount + XXLamount + XSamount + Samount + Lamount;
 
-        Mamount=tempMcount*900;
-        XLamount=tempXLcount*1100;
-        XXLamount=tempXXLcount*1200;
-        XSamount=tempXScount*600;
+        // System.out.printf("%-9s+%13s", "+------+-------", "------------+");
+        // System.out.printf("%-9s|%13s", "\n| Size | QTY ", " Amount |");
+        // System.out.printf("%-9s+%13s", "\n+------+-------", "------------+");
+        // System.out.println();
+        // System.out.printf("| %-4s | %-5d | %10.2f |\n", "M", tempMcount, Mamount);
+        // System.out.printf("| %-4s | %-5d | %10.2f |\n", "XL", tempXLcount, XLamount);
+        // System.out.printf("| %-4s | %-5d | %10.2f |\n", "XXL", tempXXLcount,
+        // XXLamount);
+        // System.out.printf("| %-4s | %-5d | %10.2f |\n", "XS", tempXScount, XSamount);
+        // System.out.printf("| %-4s | %-5d | %10.2f |\n", "S", tempScount, Samount);
+        // System.out.printf("| %-4s | %-5d | %10.2f |\n", "L", tempLcount, Lamount);
+        // System.out.printf("+------+-------+------------+\n");
+        // System.out.printf("%-1s|%11.2f |", "| Total Amount ", Totalamount);
+        // System.out.printf("\n+--------------+------------+\n");
 
-        System.out.printf("%-9s+%13s","+------+-------","------------+");
-        System.out.printf("%-9s|%13s","\n| Size | QTY   "," Amount |");
-        System.out.printf("%-9s+%13s","\n+------+-------","------------+");
-        System.out.println();
-        System.out.printf("| %-4s | %-5d | %10.2f |\n", "M", tempMcount, 5400.00);
-        System.out.printf("| %-4s | %-5d | %10.2f |\n", "XL", tempXLcount, 4400.00);
-        System.out.printf("| %-4s | %-5d | %10.2f |\n", "XXL", tempXXLcount, 1200.00);
-        System.out.printf("| %-4s | %-5d | %10.2f |\n", "XS", tempXScount, 0.00);
-        System.out.printf("| %-4s | %-5d | %10.2f |\n", "S", tempScount, 0.00);
-        System.out.printf("| %-4s | %-5d | %10.2f |\n", "L", tempLcount, 0.00);
-        System.out.printf("+------+-------+------------+\n");
-        System.out.printf("%-1s|%11.2f |","| Total Amount ", 11000.00);
-        System.out.printf("\n+--------------+------------+\n");
+        // Scanner input = new Scanner(System.in);
+        // System.out.print("\nEnter Customer Phone Number :");
+        // numberid = input.nextLine();
 
-        Scanner input = new Scanner(System.in);
-        System.out.print("\nEnter Customer Phone Number :");
-        numberid = input.nextLine();
-        
     }
 }
