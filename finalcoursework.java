@@ -32,12 +32,19 @@ class finalcoursework {
     static double XLamount = 0;
     static double XXLamount = 0;
     static double Totalamount = 0;
+    static final String Status = "PROCESSING";
+
+    static String searchoid;
+    static boolean istrue;
+
+    static boolean istruedelete;
 
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
 
-        System.out.println(" /$$$$$$$$                 /$$       /$$                            /$$$$$$  /$$                          ");
+        System.out.println(
+                " /$$$$$$$$                 /$$       /$$                            /$$$$$$  /$$                          ");
         System.out.println(
                 "| $$_____/                | $$      |__/                           /$$__  $$| $$                          ");
         System.out.println(
@@ -59,9 +66,11 @@ class finalcoursework {
         System.out.println(
                 "                                                                                                |__/      ");
 
-        System.out.println( "\n\n_____________________________________________________________________________________________________________\n\n");
+        System.out.println(
+                "\n\n_____________________________________________________________________________________________________________\n\n");
 
-        System.out.println("\t\t[1]place Order                                                      [2]Search Customrer\n");
+        System.out.println(
+                "\t\t[1]place Order                                                      [2]Search Customrer\n");
         System.out.println("\t\t[3]Search Order                                                     [4]View Reports\n");
         System.out.println("\t\t[5]Set Order Status                                                 [6]Delete Order");
 
@@ -141,13 +150,13 @@ class finalcoursework {
 
     public static void customernumber() {
         Scanner input = new Scanner(System.in);
-        System.out.print("\n\nEnter Customer Number : ");
+        System.out.print("Enter Customer Number : ");
         contact = input.nextLine();
 
         if (contact.length() != 10 || contact.charAt(0) != '0') {
             System.out.println("\t\tinvalid phone number....Try again");
-            System.out.println("Do you want to enter phone number again? (y/n) :");
-            char yesno = input.next().charAt(QTY);
+            System.out.print("Do you want to enter phone number again? (y/n) :");
+            char yesno = input.next().charAt(0);
 
             if (yesno == 'y' || yesno == 'Y') {
                 customernumber();
@@ -218,8 +227,8 @@ class finalcoursework {
         char yesno = input.next().charAt(0);
         if (yesno == 'y' || yesno == 'Y') {
             storedata();
-            ;
-        } else if (yesno == 'n') {
+
+        } else if (yesno == 'n' || yesno == 'N') {
             navigate();
         }
 
@@ -263,12 +272,12 @@ class finalcoursework {
         temptshirtsizearray[temptshirtsizearray.length - 1] = tshirtsize;
         tshirtsizearray = temptshirtsizearray;
 
-        System.out.println(Arrays.toString(contactnumber));
-        System.out.println(Arrays.toString(idarray));
-        System.out.println(Arrays.toString(tshirtsizearray));
-        System.out.println(Arrays.toString(amountarray));
-        System.out.println(Arrays.toString(qtyarray));
-        System.out.println("order placed");
+        // System.out.println(Arrays.toString(contactnumber));
+        // System.out.println(Arrays.toString(idarray));
+        // System.out.println(Arrays.toString(tshirtsizearray));
+        // System.out.println(Arrays.toString(amountarray));
+        // System.out.println(Arrays.toString(qtyarray));
+        // System.out.println("order placed");
     }
 
     public static void navigate() {
@@ -293,7 +302,7 @@ class finalcoursework {
                 .println(" |_____/ \\___|\\__,_|_|  \\___|_| |_|  \\_____\\__,_|___/\\__\\___/|_| |_| |_|\\___|_|   ");
 
         System.out.println(
-                "/n/n__________________________________________________________________________________________/n/n");
+                "\n\n_________________________________________________________________________________________\n\n");
 
         Scanner input = new Scanner(System.in);
         System.out.print("Enter Customer Phone Number :");
@@ -303,6 +312,7 @@ class finalcoursework {
     }
 
     public static void searchcontact() {
+        Scanner input = new Scanner(System.in);
 
         for (int i = 0; i < contactnumber.length; i++) {
 
@@ -313,7 +323,7 @@ class finalcoursework {
 
                 } else if (tshirtsizearray[i].equals("XS")) {
                     tempXScount = tempXScount + qtyarray[i];
-                }else if (tshirtsizearray[i].equals("S")) {
+                } else if (tshirtsizearray[i].equals("S")) {
                     tempScount = tempScount + qtyarray[i];
                 } else if (tshirtsizearray[i].equals("L")) {
                     tempLcount = tempLcount + qtyarray[i];
@@ -325,20 +335,26 @@ class finalcoursework {
 
             } else {
 
+                System.out.println("Invalid Input...");
+                System.out.println("Do you want to enter phone number again? (y/n) :");
+                char yesno = input.next().charAt(QTY);
+
+                if (yesno == 'y' || yesno == 'Y') {
+                    customernumber();
+                } else if (yesno == 'N' || yesno == 'n') {
+                    main(null);
+                } else {
+                    System.out.print("\033[1A");
+                }
             }
-            
+
         }
-        System.out.println("L"+tempLcount);
-        System.out.println("M"+tempMcount);
-        System.out.println("S"+tempScount);
-        System.out.println("XL"+tempXLcount);
-        System.out.println("XS"+tempXScount);
 
         printresult();
 
     }
 
-    public static void printresult(){
+    public static void printresult() {
         Mamount = tempMcount * 900;
         XLamount = tempXLcount * 1100;
         XXLamount = tempXXLcount * 1200;
@@ -362,24 +378,165 @@ class finalcoursework {
         System.out.printf("\n+--------------+------------+\n");
 
         Scanner input = new Scanner(System.in);
-        System.out.print("\nEnter Customer Phone Number :");
-        numberid = input.nextLine();
+        System.out.print("Do you want to search phone number again? (y/n) :");
+        char yesno = input.next().charAt(0);
+
+        if (yesno == 'y' || yesno == 'Y') {
+            SearchCustomer();
+        } else if (yesno == 'N' || yesno == 'n') {
+            main(null);
+        } else {
+            System.out.print("\033[1A");
+        }
 
     }
 
-    public static void viewreports() {
+    public static void SearchOrder() {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("   _____                     _        ____          _           ");
+        System.out.println("  / ____|                   | |      / __ \\        | |          ");
+        System.out.println(" | (___   ___  __ _ _ __ ___| |__   | |  | |_ __ __| | ___ _ __ ");
+        System.out.println("  \\___ \\ / _ \\/ _` | '__/ __| '_ \\  | |  | | '__/ _` |/ _ \\ '__|");
+        System.out.println("  ____) |  __/ (_| | | | (__| | | | | |__| | | | (_| |  __/ |   ");
+        System.out.println(" |_____/ \\___|\\__,_|_|  \\___|_| |_|  \\____/|_|  \\__,_|\\___|_|   ");
+
+        System.out.println("\n\n_____________________________________________________________\n\n");
+
+        System.out.print("\nEnter Order ID :");
+        searchoid = input.nextLine();
+
+        searchoid();
+    }
+
+    public static void searchoid() {
+        Scanner input = new Scanner(System.in);
+        istrue = false;
+        for (int i = 0; i < idarray.length; i++) {
+
+            if (searchoid.equals(idarray[i])) {
+                System.out.println("\nPhone number :" + contactnumber[i]);
+                System.out.println("Size         :" + tshirtsizearray[i]);
+                System.out.println("QTY          :" + qtyarray[i]);
+                System.out.println("Amount       :" + amountarray[i]);
+                System.out.println("Status       :" + Status);
+
+                istrue = true;
+
+                System.out.print("Do you want to search Oder ID again? (y/n) :");
+                char yesno = input.next().charAt(0);
+
+                if (yesno == 'y' || yesno == 'Y') {
+                    SearchOrder();
+                } else if (yesno == 'N' || yesno == 'n') {
+                    main(null);
+                } else {
+                    System.out.print("\033[1A");
+                }
+
+            } else {
+                continue;
+            }
+
+        }
+
+        if (istrue == false) {
+            System.out.println("Invalid Input...");
+            System.out.println("Do you want to Search Oder ID again? (y/n) :");
+            char yesno = input.next().charAt(QTY);
+
+            if (yesno == 'y' || yesno == 'Y') {
+                SearchOrder();
+            } else if (yesno == 'N' || yesno == 'n') {
+                main(null);
+            } else {
+                System.out.print("\033[1A");
+            }
+        }
+    }
+
+    public static void deleteorder() {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("  _____       _      _          ____          _           ");
+        System.out.println(" |  __ \\     | |    | |        / __ \\        | |          ");
+        System.out.println(" | |  | | ___| | ___| |_ ___  | |  | |_ __ __| | ___ _ __ ");
+        System.out.println(" | |  | |/ _ \\ |/ _ \\ __/ _ \\ | |  | | '__/ _` |/ _ \\ '__|");
+        System.out.println(" | |__| |  __/ |  __/ ||  __/ | |__| | | | (_| |  __/ |   ");
+        System.out.println(" |_____/ \\___|_|\\___|\\__\\___|  \\____/|_|  \\__,_|\\___|_|   ");
+
+        System.out.println("\n\n_____________________________________________________________\n\n");
+
+        System.out.print("\nEnter Order ID :");
+        searchoid = input.nextLine();
+
+        istruedelete = false;
+
+        for (int i = 0; i < idarray.length; i++) {
+
+            if (searchoid.equals(idarray[i])) {
+
+                System.out.println("\nPhone number :" + contactnumber[i]);
+                System.out.println("Size         :" + tshirtsizearray[i]);
+                System.out.println("QTY          :" + qtyarray[i]);
+                System.out.println("Amount       :" + amountarray[i]);
+                System.out.println("Status       :" + Status);
+
+                idarray[i] = null;
+                contactnumber[i] = null;
+                tshirtsizearray[i] = null;
+                qtyarray[i] = 0;
+                amountarray[i] = 0;
+
+                istruedelete = true;
+
+                
+                System.out.print("Do you want to Delete another order? (y/n) :");
+                char yesno = input.next().charAt(0);
+
+                if (yesno == 'y' || yesno == 'Y') {
+                    deleteorder();
+                } else if (yesno == 'N' || yesno == 'n') {
+                main(null);
+                } else {
+                System.out.print("\033[1A");
+                }
+
+            } else {
+                continue;
+            }
+
+        }
+
+        // System.out.println(Arrays.toString(contactnumber));
+        // System.out.println(Arrays.toString(idarray));
+        // System.out.println(Arrays.toString(tshirtsizearray));
+        // System.out.println(Arrays.toString(qtyarray));
+        // System.out.println(Arrays.toString(amountarray));
+
+        if (istrue == false) {
+            System.out.println("Invalid Input...");
+            System.out.println("Do you want to emter another Oder ID? (y/n) :");
+            char yesno = input.next().charAt(QTY);
+
+            if (yesno == 'y' || yesno == 'Y') {
+                deleteorder();
+            } else if (yesno == 'N' || yesno == 'n') {
+                main(null);
+            } else {
+                System.out.print("\033[1A");
+            }
+        }
 
     }
+
+    
 
     public static void setorder() {
 
     }
 
-    public static void deleteorder() {
-
-    }
-
-    public static void SearchOrder() {
+    public static void viewreports() {
 
     }
 
