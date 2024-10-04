@@ -32,8 +32,12 @@ class finalcoursework {
     static double XLamount = 0;
     static double XXLamount = 0;
     static double Totalamount = 0;
-    static final String Status = "PROCESSING";
+    static int Status = -1;
+    static final int Processing = 0;
+    static final int Delivering = 1;
+    static final int Delivered = 2;
 
+    static boolean iscorrect;
     static String searchoid;
     static boolean istrue;
 
@@ -79,21 +83,27 @@ class finalcoursework {
 
         switch (Option) {
             case 1:
+                clearConsole();
                 placeorder();
                 break;
             case 2:
+                clearConsole();
                 SearchCustomer();
                 break;
             case 3:
+                clearConsole();
                 SearchOrder();
                 break;
             case 4:
+                clearConsole();
                 viewreports();
                 break;
             case 5:
+                clearConsole();
                 setorder();
                 break;
             case 6:
+                clearConsole();
                 deleteorder();
                 break;
             default:
@@ -223,9 +233,11 @@ class finalcoursework {
 
     public static void completeorder() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Do you wat to place this order(y/N)");
+        System.out.print("Do you wat to place this order(Y/N)");
         char yesno = input.next().charAt(0);
         if (yesno == 'y' || yesno == 'Y') {
+            System.out.println("Order Placed...!");
+            Status = Processing;
             storedata();
 
         } else if (yesno == 'n' || yesno == 'N') {
@@ -242,18 +254,11 @@ class finalcoursework {
         String[] temptshirtsizearray = new String[tshirtsizearray.length + 1];
 
         for (int i = 0; i < idarray.length; i++) {
+
             tempidarray[i] = idarray[i];
-        }
-        for (int i = 0; i < contactnumber.length; i++) {
             tempcontact[i] = contactnumber[i];
-        }
-        for (int i = 0; i < amountarray.length; i++) {
             tempamountarray[i] = amountarray[i];
-        }
-        for (int i = 0; i < tshirtsizearray.length; i++) {
             temptshirtsizearray[i] = tshirtsizearray[i];
-        }
-        for (int i = 0; i < qtyarray.length; i++) {
             tempqty[i] = qtyarray[i];
         }
 
@@ -313,41 +318,40 @@ class finalcoursework {
 
     public static void searchcontact() {
         Scanner input = new Scanner(System.in);
-
+        iscorrect = false;
         for (int i = 0; i < contactnumber.length; i++) {
 
             if (numberid.equals(contactnumber[i])) {
-
+                iscorrect = true;
                 if (tshirtsizearray[i].equals("M")) {
-                    tempMcount = tempMcount + qtyarray[i];
-
+                    tempMcount += qtyarray[i];
                 } else if (tshirtsizearray[i].equals("XS")) {
-                    tempXScount = tempXScount + qtyarray[i];
+                    tempXScount += qtyarray[i];
                 } else if (tshirtsizearray[i].equals("S")) {
-                    tempScount = tempScount + qtyarray[i];
+                    tempScount += qtyarray[i];
                 } else if (tshirtsizearray[i].equals("L")) {
-                    tempLcount = tempLcount + qtyarray[i];
+                    tempLcount += qtyarray[i];
                 } else if (tshirtsizearray[i].equals("XL")) {
-                    tempXLcount = tempXLcount + qtyarray[i];
+                    tempXLcount += qtyarray[i];
                 } else if (tshirtsizearray[i].equals("XXL")) {
-                    tempXXLcount = tempXXLcount + qtyarray[i];
+                    tempXXLcount += qtyarray[i];
                 }
 
-            } else {
-
-                System.out.println("Invalid Input...");
-                System.out.println("Do you want to enter phone number again? (y/n) :");
-                char yesno = input.next().charAt(QTY);
-
-                if (yesno == 'y' || yesno == 'Y') {
-                    customernumber();
-                } else if (yesno == 'N' || yesno == 'n') {
-                    main(null);
-                } else {
-                    System.out.print("\033[1A");
-                }
             }
 
+        }
+        if (iscorrect == false) {
+            System.out.println("Invalid Input...");
+            System.out.println("Do you want to enter phone number again? (y/n) :");
+            char yesno = input.next().charAt(QTY);
+
+            if (yesno == 'y' || yesno == 'Y') {
+                customernumber();
+            } else if (yesno == 'N' || yesno == 'n') {
+                main(null);
+            } else {
+                System.out.print("\033[1A");
+            }
         }
 
         printresult();
@@ -382,13 +386,24 @@ class finalcoursework {
         char yesno = input.next().charAt(0);
 
         if (yesno == 'y' || yesno == 'Y') {
+            updatecount();
             SearchCustomer();
+
         } else if (yesno == 'N' || yesno == 'n') {
             main(null);
         } else {
             System.out.print("\033[1A");
         }
 
+    }
+
+    public static void updatecount() {
+        tempLcount = 0;
+        tempMcount = 0;
+        tempScount = 0;
+        tempXLcount = 0;
+        tempXScount = 0;
+        tempXXLcount = 0;
     }
 
     public static void SearchOrder() {
@@ -419,7 +434,13 @@ class finalcoursework {
                 System.out.println("Size         :" + tshirtsizearray[i]);
                 System.out.println("QTY          :" + qtyarray[i]);
                 System.out.println("Amount       :" + amountarray[i]);
-                System.out.println("Status       :" + Status);
+                if (Status == 0) {
+                    System.out.println("Status       : Processing");
+                } else if (Status == 1) {
+                    System.out.println("Status       : Delivering");
+                } else if (Status == 2) {
+                    System.out.println("Status       : Delivered");
+                }
 
                 istrue = true;
 
@@ -467,10 +488,9 @@ class finalcoursework {
 
         System.out.println("\n\n_____________________________________________________________\n\n");
 
+        istrue = false;
         System.out.print("\nEnter Order ID :");
         searchoid = input.nextLine();
-
-        istruedelete = false;
 
         for (int i = 0; i < idarray.length; i++) {
 
@@ -480,30 +500,27 @@ class finalcoursework {
                 System.out.println("Size         :" + tshirtsizearray[i]);
                 System.out.println("QTY          :" + qtyarray[i]);
                 System.out.println("Amount       :" + amountarray[i]);
-                System.out.println("Status       :" + Status);
+                if (Status == 0) {
+                    System.out.println("Status       : Processing");
+                } else if (Status == 1) {
+                    System.out.println("Status       : Delivering");
+                } else if (Status == 2) {
+                    System.out.println("Status       : Delivered");
+                }
 
-                idarray[i] = null;
-                contactnumber[i] = null;
-                tshirtsizearray[i] = null;
-                qtyarray[i] = 0;
-                amountarray[i] = 0;
+                istrue = true;
 
-                istruedelete = true;
-
-                
-                System.out.print("Do you want to Delete another order? (y/n) :");
+                System.out.print("Do you want to Delete this order? (y/n) :");
                 char yesno = input.next().charAt(0);
 
                 if (yesno == 'y' || yesno == 'Y') {
-                    deleteorder();
+                    sortarray(i);
                 } else if (yesno == 'N' || yesno == 'n') {
-                main(null);
+                    main(null);
                 } else {
-                System.out.print("\033[1A");
+                    System.out.print("\033[1A");
                 }
 
-            } else {
-                continue;
             }
 
         }
@@ -516,7 +533,7 @@ class finalcoursework {
 
         if (istrue == false) {
             System.out.println("Invalid Input...");
-            System.out.println("Do you want to emter another Oder ID? (y/n) :");
+            System.out.println("Do you want to enter another Oder ID? (y/n) :");
             char yesno = input.next().charAt(QTY);
 
             if (yesno == 'y' || yesno == 'Y') {
@@ -529,8 +546,6 @@ class finalcoursework {
         }
 
     }
-
-    
 
     public static void setorder() {
 
@@ -571,9 +586,59 @@ class finalcoursework {
         // System.out.printf("%-1s|%11.2f |", "| Total Amount ", Totalamount);
         // System.out.printf("\n+--------------+------------+\n");
 
-        // Scanner input = new Scanner(System.in);
-        // System.out.print("\nEnter Customer Phone Number :");
-        // numberid = input.nextLine();
+    }
 
+    public static int sortarray(int deleteindex) {
+
+        String[] tempidarray = new String[idarray.length - 1];
+        String[] tempcontact = new String[contactnumber.length - 1];
+        int[] tempqty = new int[qtyarray.length - 1];
+        double[] tempamountarray = new double[amountarray.length - 1];
+        String[] temptshirtsizearray = new String[tshirtsizearray.length - 1];
+
+        for (int i = 0, j = 0; i < idarray.length; i++) {
+
+            if (i != deleteindex) {
+                tempidarray[j] = idarray[i];
+                tempcontact[j] = contactnumber[i];
+                tempamountarray[j] = amountarray[i];
+                temptshirtsizearray[j] = tshirtsizearray[i];
+                tempqty[j] = qtyarray[i];
+                j++;
+            }
+        }
+
+        int num = 10;
+
+        idarray = tempidarray;
+        contactnumber = tempcontact;
+        amountarray = tempamountarray;
+        tshirtsizearray = temptshirtsizearray;
+        qtyarray = tempqty;
+
+        System.out.println(Arrays.toString(contactnumber));
+        System.out.println(Arrays.toString(idarray));
+        System.out.println(Arrays.toString(tshirtsizearray));
+        System.out.println(Arrays.toString(qtyarray));
+        System.out.println(Arrays.toString(amountarray));
+
+        return num;
+
+    }
+
+    public final static void clearConsole() {
+        try {
+            final String os = System.getProperty("os.name");
+            if (os.contains("Windows")) {
+                new ProcessBuilder("cmd", "/c",
+                        "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (final Exception e) {
+            e.printStackTrace();
+            // Handle any exceptions.
+        }
     }
 }
