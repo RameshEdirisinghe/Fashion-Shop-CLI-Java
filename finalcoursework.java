@@ -253,14 +253,14 @@ class finalcoursework {
     }
 
     public static void storedata() {
-        String[] tempidarray = new String[idarray.length + 1];
+        String[] tempidarray = new String[idarray.length + 1]; //increment array length
         String[] tempcontact = new String[contactnumber.length + 1];
         int[] tempqty = new int[qtyarray.length + 1];
         double[] tempamountarray = new double[amountarray.length + 1];
         String[] temptshirtsizearray = new String[tshirtsizearray.length + 1];
 
         for (int i = 0; i < idarray.length; i++) {
-
+            //copy previous data
             tempidarray[i] = idarray[i];
             tempcontact[i] = contactnumber[i];
             tempamountarray[i] = amountarray[i];
@@ -268,8 +268,8 @@ class finalcoursework {
             tempqty[i] = qtyarray[i];
         }
 
-        tempidarray[tempidarray.length - 1] = newOrderID;
-        idarray = tempidarray;
+        tempidarray[tempidarray.length - 1] = newOrderID; //Assign the new value to the last index
+        idarray = tempidarray;//change array address 
 
         tempcontact[tempcontact.length - 1] = contact;
         contactnumber = tempcontact;
