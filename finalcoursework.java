@@ -7,7 +7,6 @@ class finalcoursework {
     static double[] amountarray = new double[0];
     static String[] tshirtsizearray = new String[0];
 
-
     static int orderNumber = 0;
     static String newOrderID;
     static String contact;
@@ -37,9 +36,7 @@ class finalcoursework {
     static final int Delivering = 1;
     static final int Delivered = 2;
 
-
     static String searchoid;
-
 
     public static void main(String[] args) {
 
@@ -175,7 +172,7 @@ class finalcoursework {
                 customercontact();
             } else if (yesno == 'N' || yesno == 'n') {
                 main(null);
-            } 
+            }
         }
 
     }
@@ -223,9 +220,9 @@ class finalcoursework {
                 amount = 1000 * QTY;
                 break;
             case "XL":
-                amount = 11000 * QTY;
+                amount = 1100 * QTY;
             case "XXL":
-                amount = 12000 * QTY;
+                amount = 1200 * QTY;
             default:
                 break;
         }
@@ -253,14 +250,14 @@ class finalcoursework {
     }
 
     public static void storedata() {
-        String[] tempidarray = new String[idarray.length + 1]; //increment array length
+        String[] tempidarray = new String[idarray.length + 1]; // increment array length
         String[] tempcontact = new String[contactnumber.length + 1];
         int[] tempqty = new int[qtyarray.length + 1];
         double[] tempamountarray = new double[amountarray.length + 1];
         String[] temptshirtsizearray = new String[tshirtsizearray.length + 1];
 
         for (int i = 0; i < idarray.length; i++) {
-            //copy previous data
+            // copy previous data
             tempidarray[i] = idarray[i];
             tempcontact[i] = contactnumber[i];
             tempamountarray[i] = amountarray[i];
@@ -268,8 +265,8 @@ class finalcoursework {
             tempqty[i] = qtyarray[i];
         }
 
-        tempidarray[tempidarray.length - 1] = newOrderID; //Assign the new value to the last index
-        idarray = tempidarray;//change array address 
+        tempidarray[tempidarray.length - 1] = newOrderID; // Assign the new value to the last index
+        idarray = tempidarray;// change array address
 
         tempcontact[tempcontact.length - 1] = contact;
         contactnumber = tempcontact;
@@ -363,7 +360,7 @@ class finalcoursework {
             } else if (yesno == 'N' || yesno == 'n') {
                 clearConsole();
                 main(null);
-            } 
+            }
         }
 
         printresult();
@@ -533,11 +530,11 @@ class finalcoursework {
 
                 if (yesno == 'y' || yesno == 'Y') {
                     System.out.println("\n\tOder Deleted...!");
-                    
+
                     sortarray(i);
                 } else if (yesno == 'N' || yesno == 'n') {
-                   
-                } 
+
+                }
 
                 System.out.print("Do you want to Delete another order? (y/n) :");
                 yesno = input.next().charAt(0);
@@ -545,7 +542,7 @@ class finalcoursework {
                 if (yesno == 'y' || yesno == 'Y') {
                     clearConsole();
                     deleteorder();
-                    
+
                 } else if (yesno == 'N' || yesno == 'n') {
                     clearConsole();
                     main(null);
@@ -557,7 +554,7 @@ class finalcoursework {
 
         }
 
-        //check
+        // check
         // System.out.println(Arrays.toString(contactnumber));
         // System.out.println(Arrays.toString(idarray));
         // System.out.println(Arrays.toString(tshirtsizearray));
@@ -579,18 +576,6 @@ class finalcoursework {
                 System.out.print("\033[1A");
             }
         }
-
-    }
-
-    public static void setorder() {
-
-    }
-
-    public static void viewreports() {
-
-    }
-
-    public static void sizeoftshirt() {
 
     }
 
@@ -626,6 +611,186 @@ class finalcoursework {
         // System.out.println(Arrays.toString(qtyarray));
         // System.out.println(Arrays.toString(amountarray));
 
+    }
+
+    public static void setorder() {
+
+    }
+
+    public static void viewreports() {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("  _____                       _       ");
+        System.out.println(" |  __ \\                     | |      ");
+        System.out.println(" | |__) |___ _ __   ___  _ __| |_ ___ ");
+        System.out.println(" |  _  // _ \\ '_ \\ / _ \\| '__| __/ __|");
+        System.out.println(" | | \\ \\  __/ |_) | (_) | |  | |_\\__ \\");
+        System.out.println(" |_|  \\_\\___| .__/ \\___/|_|   \\__|___/");
+        System.out.println("            | |                       ");
+        System.out.println("            |_|                       ");
+
+        System.out.println("\n\n_____________________________________________________________\n\n");
+
+        System.out.println("\t[1] Customer Reports");
+        System.out.println("\t[2] Item Reports");
+        System.out.println("\t[3] Orders Reports");
+
+        System.out.print("Enter Option");
+        int Optionreports = input.nextInt();
+
+        switch (Optionreports) {
+            case 1:
+                CustomerReports();
+                break;
+            case 2:
+                ItemReports();
+                break;
+            case 3:
+                OrdersReports();
+                break;
+            default:
+                clearConsole();
+                viewreports();
+                break;
+        }
+
+    }
+
+    public static void CustomerReports() {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("   _____          _                              _____                       _       ");
+        System.out.println("  / ____|        | |                            |  __ \\                     | |      ");
+        System.out.println(" | |    _   _ ___| |_ ___  _ __ ___   ___ _ __  | |__) |___ _ __   ___  _ __| |_ ___ ");
+        System.out
+                .println(" | |   | | | / __| __/ _ \\| '_ ` _ \\ / _ \\ '__| |  _  // _ \\ '_ \\ / _ \\| '__| __/ __|");
+        System.out
+                .println(" | |___| |_| \\__ \\ || (_) | | | | | |  __/ |    | | \\ \\  __/ |_) | (_) | |  | |_\\__ \\");
+        System.out.println(
+                "  \\_____\\__,_|___/\\__\\___/|_| |_| |_|\\___|_|    |_|  \\_\\___| .__/ \\___/|_|   \\__|___/");
+        System.out.println("                                                           | |                       ");
+        System.out.println("                                                           |_|                       ");
+
+        System.out.println("\n\n_____________________________________________________________________________\n\n");
+
+        System.out.println("\t[1] Best in Customers");
+        System.out.println("\t[2] view Customers");
+        System.out.println("\t[3] All Customer Report");
+
+        System.out.print("Enter Option");
+        int OptionCusReports = input.nextInt();
+
+        switch (OptionCusReports) {
+            case 1:
+                BestCustomer();
+                break;
+            case 2:
+                ViewCustomer();
+                break;
+            case 3:
+                AllCustomer();
+                break;
+            default:
+                clearConsole();
+                CustomerReports();
+                break;
+        }
+    }
+
+    public static void BestCustomer() {
+        array2D();
+    }
+
+    public static void array2D() {
+
+        String[][] amount2Darr = new String[contactnumber.length][3];
+        boolean[] processed = new boolean[contactnumber.length];
+
+        for (int i = 0; i < contactnumber.length; i++) {
+            if (processed[i]) {
+                continue;
+            }
+
+            int tempqty = qtyarray[i];
+            double tempamount = amountarray[i];
+            processed[i] = true;
+
+            for (int j = i + 1; j < contactnumber.length; j++) {
+                if (contactnumber[i].equals(contactnumber[j])) {
+                    tempqty += qtyarray[j];
+                    tempamount += amountarray[j];
+                    processed[j] = true;
+                }
+            }
+
+            amount2Darr[i][0] = contactnumber[i];
+            amount2Darr[i][1] = String.valueOf(tempqty);
+            amount2Darr[i][2] = String.valueOf(tempamount);
+        }
+
+        int[][] intArray = new int[stringArray.length][stringArray[0].length];
+        for (int i = 0; i < stringArray.length; i++) {
+            for (int j = 0; j < stringArray[i].length; j++) {
+                intArray[i][j] = Integer.parseInt(stringArray[i][j]);
+            }
+        }
+
+        // for (int i = amount2Darr.length - 1; i > 0; i--) {
+        //     for (int j = 0; j < i; j++) {
+        //         if (processed[j]) {
+        //             continue;  // Skip the already processed rows
+        //         }
+                
+        //         // Compare based on the third column (converted to integer)
+        //         if (Integer.parseInt(amount2Darr[j][2]) > Integer.parseInt(amount2Darr[j + 1][2])) {
+        //             // Swap the entire row
+        //             String[] temp = amount2Darr[j];
+        //             amount2Darr[j] = amount2Darr[j + 1];
+        //             amount2Darr[j + 1] = temp;
+        //         }
+        //     }
+        // }
+
+        System.out.println(Arrays.toString(amount2Darr[0]));
+        System.out.println(Arrays.toString(amount2Darr[1]));
+        System.out.println(Arrays.toString(amount2Darr[2]));
+        System.out.println(Arrays.toString(amount2Darr[3]));
+        System.out.println(Arrays.toString(amount2Darr[4]));
+
+    }
+
+    public static void ViewCustomer() {
+
+    }
+
+    public static void AllCustomer() {
+
+    }
+
+    public static void ItemReports() {
+
+    }
+
+    public static void OrdersReports() {
+
+    }
+
+    public static void sizeoftshirt() {
+        // String[][] customerDetails = new String[phoneNumberArray.length][3];
+
+        // for (int i = 0; i < phoneNumberArray.length; i++) {
+
+        //     for (int j = 0; j < i; j++) {
+
+        //         if (phoneNumberArray[i] == customerDetails[j][0]) {
+
+        //         }
+        //     }
+
+        //     customerDetails[i][0] = phoneNumberArray[i];
+        //     customerDetails[i][1] = String.valueOf(qtyArray[i]);
+        //     customerDetails[i][2] = String.valueOf(amountArray[i]);
+        // }
     }
 
     public final static void clearConsole() {
