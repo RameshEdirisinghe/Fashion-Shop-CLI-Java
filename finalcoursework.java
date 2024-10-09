@@ -6,6 +6,7 @@ class finalcoursework {
     static int[] qtyarray = new int[0];
     static double[] amountarray = new double[0];
     static String[] tshirtsizearray = new String[0];
+    static int[] Statusar = new int[0];
 
     static int orderNumber = 0;
     static String newOrderID;
@@ -255,6 +256,7 @@ class finalcoursework {
         int[] tempqty = new int[qtyarray.length + 1];
         double[] tempamountarray = new double[amountarray.length + 1];
         String[] temptshirtsizearray = new String[tshirtsizearray.length + 1];
+        int[] tempStatusar = new int[Statusar.length + 1];
 
         for (int i = 0; i < idarray.length; i++) {
             // copy previous data
@@ -263,6 +265,7 @@ class finalcoursework {
             tempamountarray[i] = amountarray[i];
             temptshirtsizearray[i] = tshirtsizearray[i];
             tempqty[i] = qtyarray[i];
+            tempStatusar[i] = Statusar[i];
         }
 
         tempidarray[tempidarray.length - 1] = newOrderID; // Assign the new value to the last index
@@ -279,6 +282,9 @@ class finalcoursework {
 
         temptshirtsizearray[temptshirtsizearray.length - 1] = tshirtsize;
         tshirtsizearray = temptshirtsizearray;
+
+        tempStatusar[tempStatusar.length - 1] = Status;
+        Statusar = tempStatusar;
 
         // System.out.println(Arrays.toString(contactnumber));
         // System.out.println(Arrays.toString(idarray));
@@ -613,10 +619,6 @@ class finalcoursework {
 
     }
 
-    public static void setorder() {
-
-    }
-
     public static void viewreports() {
         Scanner input = new Scanner(System.in);
 
@@ -766,6 +768,17 @@ class finalcoursework {
         }
 
         System.out.println("+--------------------+--------------+-------------------+");
+
+        System.out.println();
+        System.out.print("To access the Main Menu,Please enter 0 :");
+        Scanner input = new Scanner(System.in);
+        int main = input.nextInt();
+        if (main == 0) {
+            main(null);
+        } else {
+            clearConsole();
+            BestCustomer();
+        }
         // String[][] amount2Darr = new String[contactnumber.length][3];
         // boolean[] processed = new boolean[contactnumber.length];
 
@@ -859,6 +872,7 @@ class finalcoursework {
         System.out
                 .println("\n\n__________________________________________________________________________________\n\n");
 
+        Scanner input = new Scanner(System.in);
         String[][] amount2Darr = new String[contactnumber.length][3];
         boolean[] processed = new boolean[contactnumber.length];
 
@@ -890,18 +904,33 @@ class finalcoursework {
         // System.out.println(Arrays.toString(bestCustomer[3]));
         // System.out.println(Arrays.toString(bestCustomer[4]));
 
-        System.out.printf("\t\t\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------","-------------------+");
-        System.out.printf("\t\t\t\t\t|%15s %8s %14s\n", "     Customer ID    |", "     QTY     |","    Amount        |");
-        System.out.printf("\t\t\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------","-------------------+");
+        System.out.printf("\t\t\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------",
+                "-------------------+");
+        System.out.printf("\t\t\t\t\t|%15s %8s %14s\n", "     Customer ID    |", "     QTY     |",
+                "    Amount        |");
+        System.out.printf("\t\t\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------",
+                "-------------------+");
 
         for (int i = 0; i < amount2Darr.length; i++) {
             if (amount2Darr[i][2] != null) {
-                System.out.printf("\t\t\t\t\t| %15s    | %8s     |  %14s   |\n", amount2Darr[i][0], amount2Darr[i][1],amount2Darr[i][2]);
+                System.out.printf("\t\t\t\t\t| %15s    | %8s     |  %14s   |\n", amount2Darr[i][0], amount2Darr[i][1],
+                        amount2Darr[i][2]);
                 System.out.printf("\t\t\t\t\t| %15s    |%8s      |  %14s   |\n", "", "", "");
             }
 
         }
-        System.out.printf("\t\t\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------","-------------------+");
+        System.out.printf("\t\t\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------",
+                "-------------------+");
+
+        System.out.println();
+        System.out.print("To access the Main Menu,Please enter 0 :");
+        int main = input.nextInt();
+        if (main == 0) {
+            main(null);
+        } else {
+            clearConsole();
+            ViewCustomer();
+        }
     }
 
     public static void AllCustomer() {
@@ -980,6 +1009,7 @@ class finalcoursework {
 
             for (int j = i + 1; j < contactnumber.length; j++) {
                 if (contactnumber[i].equals(contactnumber[j])) {
+
                     if (tshirtsizearray[j].equals("M")) {
                         Mcount += qtyarray[j];
                         tshize2Darr[i][3] = Mcount;
@@ -1044,6 +1074,17 @@ class finalcoursework {
         }
         System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s+%5s+%12s \n", "+-------------------------", "--------",
                 "--------", "--------", "--------", "--------", "--------", "----------------+");
+
+        System.out.println();
+        System.out.print("To access the Main Menu,Please enter 0 :");
+        Scanner input = new Scanner(System.in);
+        int main = input.nextInt();
+        if (main == 0) {
+            main(null);
+        } else {
+            clearConsole();
+            AllCustomer();
+        }
     }
 
     public static void ItemReports() {
@@ -1060,7 +1101,7 @@ class finalcoursework {
         System.out.println("\t[1] Best Selling Categories sorted by Qty");
         System.out.println("\t[2] Best Selling Categories Sorted by amount");
 
-        System.out.println("Enter option :");
+        System.out.print("Enter option :");
         int option = input.nextInt();
 
         switch (option) {
@@ -1076,7 +1117,8 @@ class finalcoursework {
         }
 
     }
-    public static void sortqty(){
+
+    public static void sortqty() {
         System.out.println("   _____            _           _   ____           ____  _         ");
         System.out.println("  / ____|          | |         | | |  _ \\         / __ \\| |        ");
         System.out.println(" | (___   ___  _ __| |_ ___  __| | | |_) |_   _  | |  | | |_ _   _ ");
@@ -1090,40 +1132,40 @@ class finalcoursework {
 
         String[][] qty2Darr = new String[6][3];
         boolean[] processed = new boolean[contactnumber.length];
-        qty2Darr[0][0]="M";
-        qty2Darr[1][0]="XL";
-        qty2Darr[2][0]="XS";
-        qty2Darr[3][0]="S";
-        qty2Darr[4][0]="XXL";
-        qty2Darr[5][0]="L";
+        qty2Darr[0][0] = "M";
+        qty2Darr[1][0] = "XL";
+        qty2Darr[2][0] = "XS";
+        qty2Darr[3][0] = "S";
+        qty2Darr[4][0] = "XXL";
+        qty2Darr[5][0] = "L";
 
-        int Mqty=0;
-        int XLqty=0;
-        int XSqty=0;
-        int Sqty=0;
-        int XXLqty=0;
-        int Lqty=0;
+        int Mqty = 0;
+        int XLqty = 0;
+        int XSqty = 0;
+        int Sqty = 0;
+        int XXLqty = 0;
+        int Lqty = 0;
 
-        int Mtotal=0;
-        int XLtotal=0;
-        int XStotal=0;
-        int Stotal=0;
-        int XXLtotal=0;
-        int Ltotal=0;
+        int Mtotal = 0;
+        int XLtotal = 0;
+        int XStotal = 0;
+        int Stotal = 0;
+        int XXLtotal = 0;
+        int Ltotal = 0;
 
-        qty2Darr[0][1]="0";
-        qty2Darr[1][1]="0";
-        qty2Darr[2][1]="0";
-        qty2Darr[3][1]="0";
-        qty2Darr[4][1]="0";
-        qty2Darr[5][1]="0";
+        qty2Darr[0][1] = "0";
+        qty2Darr[1][1] = "0";
+        qty2Darr[2][1] = "0";
+        qty2Darr[3][1] = "0";
+        qty2Darr[4][1] = "0";
+        qty2Darr[5][1] = "0";
         // int validCount = 0;
 
         for (int i = 0; i < contactnumber.length; i++) {
             // if (processed[i]) {
-            //     continue;
+            // continue;
             // }
-            
+
             if (tshirtsizearray[i].equals("M")) {
                 Mqty += qtyarray[i];
                 qty2Darr[0][1] = String.valueOf(Mqty);
@@ -1154,11 +1196,11 @@ class finalcoursework {
             // processed[i] = true;
 
             // for (int j = i + 1; j < contactnumber.length; j++) {
-            //     if (contactnumber[i].equals(contactnumber[j])) {
-            //         tempqty = tempqty + qtyarray[j];
-            //         tempamount += amountarray[j];
-            //         processed[j] = true;
-            //     }
+            // if (contactnumber[i].equals(contactnumber[j])) {
+            // tempqty = tempqty + qtyarray[j];
+            // tempamount += amountarray[j];
+            // processed[j] = true;
+            // }
             // }
 
             // amount2Darr[validCount][0] = contactnumber[i];
@@ -1166,24 +1208,24 @@ class finalcoursework {
             // amount2Darr[validCount][2] = String.valueOf(tempamount);
             // validCount++;
         }
-        Mtotal=Mqty*900;
-        XLtotal=XLqty*1100;
-        XStotal=XSqty*600;
-        Stotal=Sqty*900;
-        Ltotal=Lqty*1000;
-        XXLtotal=XXLqty*1200;
+        Mtotal = Mqty * 900;
+        XLtotal = XLqty * 1100;
+        XStotal = XSqty * 600;
+        Stotal = Sqty * 900;
+        Ltotal = Lqty * 1000;
+        XXLtotal = XXLqty * 1200;
 
-        qty2Darr[0][2]=String.valueOf(Mtotal);
-        qty2Darr[1][2]=String.valueOf(XLtotal);
-        qty2Darr[2][2]=String.valueOf(XStotal);
-        qty2Darr[3][2]=String.valueOf(Stotal);
-        qty2Darr[4][2]=String.valueOf(XXLtotal);
-        qty2Darr[5][2]=String.valueOf(Ltotal);
+        qty2Darr[0][2] = String.valueOf(Mtotal);
+        qty2Darr[1][2] = String.valueOf(XLtotal);
+        qty2Darr[2][2] = String.valueOf(XStotal);
+        qty2Darr[3][2] = String.valueOf(Stotal);
+        qty2Darr[4][2] = String.valueOf(XXLtotal);
+        qty2Darr[5][2] = String.valueOf(Ltotal);
 
         for (int i = 0; i < qty2Darr.length; i++) {
             System.out.println(Arrays.toString(qty2Darr[i]));
-            }
-            
+        }
+
         for (int i = 5; i > 0; i--) {
 
             for (int j = 0; j < i; j++) {
@@ -1195,70 +1237,89 @@ class finalcoursework {
             }
         }
 
+        System.out.printf("\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
+        System.out.printf("\t\t\t|%15s %8s %14s\n", "      Size          |", "     QTY     |", "    Amount        |");
+        System.out.printf("\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
 
+        for (int i = 0; i < qty2Darr.length; i++) {
+            System.out.printf("\t\t\t| %15s    | %8s     |  %14s   |\n", qty2Darr[i][0], qty2Darr[i][1],
+                    qty2Darr[i][2]);
+            System.out.printf("\t\t\t| %15s    |%8s      |  %14s   |\n", "", "", "");
 
-            System.out.printf("\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------","-------------------+");
-            System.out.printf("\t\t\t|%15s %8s %14s\n", "      Size          |", "     QTY     |","    Amount        |");
-            System.out.printf("\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------","-------------------+");
-    
-            for (int i = 0; i < qty2Darr.length; i++) {
-                
-                    System.out.printf("\t\t\t| %15s    | %8s     |  %14s   |\n", qty2Darr[i][0], qty2Darr[i][1],qty2Darr[i][2]);
-                    System.out.printf("\t\t\t| %15s    |%8s      |  %14s   |\n", "", "", "");
-                
-    
-            }
-            System.out.printf("\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------","-------------------+");
+        }
+        System.out.printf("\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
+
+        System.out.println();
+        System.out.print("To access the Main Menu,Please enter 0 :");
+        Scanner input = new Scanner(System.in);
+        int main = input.nextInt();
+        if (main == 0) {
+            main(null);
+        } else {
+            clearConsole();
+            sortqty();
+        }
 
     }
-    public static void sortamount(){
-        System.out.println("   _____            _           _   ____                                               _   ");
-        System.out.println("  / ____|          | |         | | |  _ \\            /\\                               | |  ");
-        System.out.println(" | (___   ___  _ __| |_ ___  __| | | |_) |_   _     /  \\   _ __ ___   ___  _   _ _ __ | |_ ");
-        System.out.println("  \\___ \\ / _ \\| '__| __/ _ \\/ _` | |  _ <| | | |   / /\\ \\ | '_ ` _ \\ / _ \\| | | | '_ \\| __|");
-        System.out.println("  ____) | (_) | |  | ||  __/ (_| | | |_) | |_| |  / ____ \\| | | | | | (_) | |_| | | | | |_ ");
-        System.out.println(" |_____/ \\___/|_|   \\__\\___|\\__,_| |____/ \\__, | /_/    \\_\\_| |_| |_|\\___/ \\__,_|_| |_|\\__|");
-        System.out.println("                                           __/ |                                           ");
-        System.out.println("                                          |___/                                            ");
 
-        System.out.println("\n\n_____________________________________________________________________________________________\n\n");
+    public static void sortamount() {
+        System.out
+                .println("   _____            _           _   ____                                               _   ");
+        System.out.println(
+                "  / ____|          | |         | | |  _ \\            /\\                               | |  ");
+        System.out.println(
+                " | (___   ___  _ __| |_ ___  __| | | |_) |_   _     /  \\   _ __ ___   ___  _   _ _ __ | |_ ");
+        System.out.println(
+                "  \\___ \\ / _ \\| '__| __/ _ \\/ _` | |  _ <| | | |   / /\\ \\ | '_ ` _ \\ / _ \\| | | | '_ \\| __|");
+        System.out.println(
+                "  ____) | (_) | |  | ||  __/ (_| | | |_) | |_| |  / ____ \\| | | | | | (_) | |_| | | | | |_ ");
+        System.out.println(
+                " |_____/ \\___/|_|   \\__\\___|\\__,_| |____/ \\__, | /_/    \\_\\_| |_| |_|\\___/ \\__,_|_| |_|\\__|");
+        System.out
+                .println("                                           __/ |                                           ");
+        System.out
+                .println("                                          |___/                                            ");
 
+        System.out.println(
+                "\n\n_____________________________________________________________________________________________\n\n");
+
+        Scanner input = new Scanner(System.in);
         String[][] size2Darr = new String[6][3];
         boolean[] processed = new boolean[contactnumber.length];
-        size2Darr[0][0]="M";
-        size2Darr[1][0]="XL";
-        size2Darr[2][0]="XS";
-        size2Darr[3][0]="S";
-        size2Darr[4][0]="XXL";
-        size2Darr[5][0]="L";
+        size2Darr[0][0] = "M";
+        size2Darr[1][0] = "XL";
+        size2Darr[2][0] = "XS";
+        size2Darr[3][0] = "S";
+        size2Darr[4][0] = "XXL";
+        size2Darr[5][0] = "L";
 
-        int Mqty=0;
-        int XLqty=0;
-        int XSqty=0;
-        int Sqty=0;
-        int XXLqty=0;
-        int Lqty=0;
+        int Mqty = 0;
+        int XLqty = 0;
+        int XSqty = 0;
+        int Sqty = 0;
+        int XXLqty = 0;
+        int Lqty = 0;
 
-        int Mtotal=0;
-        int XLtotal=0;
-        int XStotal=0;
-        int Stotal=0;
-        int XXLtotal=0;
-        int Ltotal=0;
+        int Mtotal = 0;
+        int XLtotal = 0;
+        int XStotal = 0;
+        int Stotal = 0;
+        int XXLtotal = 0;
+        int Ltotal = 0;
 
-        size2Darr[0][1]="0";
-        size2Darr[1][1]="0";
-        size2Darr[2][1]="0";
-        size2Darr[3][1]="0";
-        size2Darr[4][1]="0";
-        size2Darr[5][1]="0";
+        size2Darr[0][1] = "0";
+        size2Darr[1][1] = "0";
+        size2Darr[2][1] = "0";
+        size2Darr[3][1] = "0";
+        size2Darr[4][1] = "0";
+        size2Darr[5][1] = "0";
         // int validCount = 0;
 
         for (int i = 0; i < contactnumber.length; i++) {
             // if (processed[i]) {
-            //     continue;
+            // continue;
             // }
-            
+
             if (tshirtsizearray[i].equals("M")) {
                 Mqty += qtyarray[i];
                 size2Darr[0][1] = String.valueOf(Mqty);
@@ -1289,11 +1350,11 @@ class finalcoursework {
             // processed[i] = true;
 
             // for (int j = i + 1; j < contactnumber.length; j++) {
-            //     if (contactnumber[i].equals(contactnumber[j])) {
-            //         tempqty = tempqty + qtyarray[j];
-            //         tempamount += amountarray[j];
-            //         processed[j] = true;
-            //     }
+            // if (contactnumber[i].equals(contactnumber[j])) {
+            // tempqty = tempqty + qtyarray[j];
+            // tempamount += amountarray[j];
+            // processed[j] = true;
+            // }
             // }
 
             // amount2Darr[validCount][0] = contactnumber[i];
@@ -1301,23 +1362,23 @@ class finalcoursework {
             // amount2Darr[validCount][2] = String.valueOf(tempamount);
             // validCount++;
         }
-        Mtotal=Mqty*900;
-        XLtotal=XLqty*1100;
-        XStotal=XSqty*600;
-        Stotal=Sqty*900;
-        Ltotal=Lqty*1000;
-        XXLtotal=XXLqty*1200;
+        Mtotal = Mqty * 900;
+        XLtotal = XLqty * 1100;
+        XStotal = XSqty * 600;
+        Stotal = Sqty * 900;
+        Ltotal = Lqty * 1000;
+        XXLtotal = XXLqty * 1200;
 
-        size2Darr[0][2]=String.valueOf(Mtotal);
-        size2Darr[1][2]=String.valueOf(XLtotal);
-        size2Darr[2][2]=String.valueOf(XStotal);
-        size2Darr[3][2]=String.valueOf(Stotal);
-        size2Darr[4][2]=String.valueOf(XXLtotal);
-        size2Darr[5][2]=String.valueOf(Ltotal);
+        size2Darr[0][2] = String.valueOf(Mtotal);
+        size2Darr[1][2] = String.valueOf(XLtotal);
+        size2Darr[2][2] = String.valueOf(XStotal);
+        size2Darr[3][2] = String.valueOf(Stotal);
+        size2Darr[4][2] = String.valueOf(XXLtotal);
+        size2Darr[5][2] = String.valueOf(Ltotal);
 
         for (int i = 0; i < size2Darr.length; i++) {
             System.out.println(Arrays.toString(size2Darr[i]));
-            }
+        }
 
         for (int i = 5; i > 0; i--) {
 
@@ -1330,40 +1391,299 @@ class finalcoursework {
             }
         }
 
+        System.out.printf("\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
+        System.out.printf("\t\t\t|%15s %8s %14s\n", "      Size          |", "     QTY     |", "    Amount        |");
+        System.out.printf("\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
 
+        for (int i = 0; i < size2Darr.length; i++) {
+            System.out.printf("\t\t\t| %15s    | %8s     |  %14s   |\n", size2Darr[i][0], size2Darr[i][1],
+                    size2Darr[i][2]);
+            System.out.printf("\t\t\t| %15s    |%8s      |  %14s   |\n", "", "", "");
+        }
+        System.out.printf("\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
 
-            System.out.printf("\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------","-------------------+");
-            System.out.printf("\t\t\t|%15s %8s %14s\n", "      Size          |", "     QTY     |","    Amount        |");
-            System.out.printf("\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------","-------------------+");
-    
-            for (int i = 0; i < size2Darr.length; i++) {
-                    System.out.printf("\t\t\t| %15s    | %8s     |  %14s   |\n", size2Darr[i][0], size2Darr[i][1],size2Darr[i][2]);
-                    System.out.printf("\t\t\t| %15s    |%8s      |  %14s   |\n", "", "", "");
-            }
-            System.out.printf("\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------","-------------------+");
-
+        System.out.println();
+        System.out.print("To access the Main Menu,Please enter 0 :");
+        int main = input.nextInt();
+        if (main == 0) {
+            main(null);
+        } else {
+            clearConsole();
+            sortamount();
+        }
     }
 
     public static void OrdersReports() {
+        System.out.println("   ____          _             _____                       _       ");
+        System.out.println("  / __ \\        | |           |  __ \\                     | |      ");
+        System.out.println(" | |  | |_ __ __| | ___ _ __  | |__) |___ _ __   ___  _ __| |_ ___ ");
+        System.out.println(" | |  | | '__/ _` |/ _ \\ '__| |  _  // _ \\ '_ \\ / _ \\| '__| __/ __|");
+        System.out.println(" | |__| | | | (_| |  __/ |    | | \\ \\  __/ |_) | (_) | |  | |_\\__ \\");
+        System.out.println("  \\____/|_|  \\__,_|\\___|_|    |_|  \\_\\___| .__/ \\___/|_|   \\__|___/");
+        System.out.println("                                         | |                       ");
+        System.out.println("                                         |_|                       ");
+
+        System.out.println();
+        System.out.println("\t[1] All Orders ");
+        System.out.println("\t[2] Orders By Amount\n");
+
+        System.out.print("Enter option:");
+        Scanner input = new Scanner(System.in);
+        int option = input.nextInt();
+
+        switch (option) {
+            case 1:
+                allorders();
+                break;
+            case 2:
+                ordersamount();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public static void allorders() {
+        System.out.println(" __      ___                  ____          _               ");
+        System.out.println(" \\ \\    / (_)                / __ \\        | |              ");
+        System.out.println("  \\ \\  / / _  _____      __ | |  | |_ __ __| | ___ _ __ ___ ");
+        System.out.println("   \\ \\/ / | |/ _ \\ \\ /\\ / / | |  | | '__/ _` |/ _ \\ '__/ __|");
+        System.out.println("    \\  /  | |  __/\\ V  V /  | |__| | | | (_| |  __/ |  \\__ \\");
+        System.out.println("     \\/   |_|\\___| \\_/\\_/    \\____/|_|  \\__,_|\\___|_|  |___/");
+
+        System.out.println();
+        Scanner input = new Scanner(System.in);
+
+        System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s\n", "+-----------------", "-------------", "--------",
+                "--------", "----------", "----------+");
+        System.out.printf("\t\t\t\t|%10s %5s %5s %5s %5s %5s\n", "      Order ID   |", "Customer ID |", " size  |",
+                "  Qty  |", " Amount  |", " Status  |");
+        System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s \n", "+-----------------", "-------------", "--------",
+                "--------", "----------", "----------+");
+
+        for (int i = contactnumber.length - 1; i >= 0; i--) {
+
+            System.out.printf("\t\t\t\t|%10s       |%5s   |%5s   |%5d   |%5.2f   |%5d     |\n", idarray[i],
+                    contactnumber[i], tshirtsizearray[i], qtyarray[i], amountarray[i], Statusar[i]);
+            System.out.printf("\t\t\t\t|%10s       |%5s        |%5s   |%5s   |%5s     |%5s     |\n", "", "", "", "", "",
+                    "", "", "");
+
+        }
+        System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s\n", "+-----------------", "-------------", "--------",
+                "--------", "----------", "----------+");
+
+        System.out.println();
+
+        System.out.print("To access the Main Menu,Please enter 0 :");
+
+        int main = input.nextInt();
+        if (main == 0) {
+            main(null);
+        } else {
+            clearConsole();
+            allorders();
+        }
+    }
+
+    public static void ordersamount() {
+        System.out
+                .println("   ____          _                 ____                                               _   ");
+        System.out.println(
+                "  / __ \\        | |               |  _ \\            /\\                               | |  ");
+        System.out
+                .println(" | |  | |_ __ __| | ___ _ __ ___  | |_) |_   _     /  \\   _ __ ___   ___  _   _ _ __ | |_ ");
+        System.out.println(
+                " | |  | | '__/ _` |/ _ \\ '__/ __| |  _ <| | | |   / /\\ \\ | '_ ` _ \\ / _ \\| | | | '_ \\| __|");
+        System.out.println(
+                " | |__| | | | (_| |  __/ |  \\__ \\ | |_) | |_| |  / ____ \\| | | | | | (_) | |_| | | | | |_ ");
+        System.out.println(
+                "  \\____/|_|  \\__,_|\\___|_|  |___/ |____/ \\__, | /_/    \\_\\_| |_| |_|\\___/ \\__,_|_| |_|\\__|");
+        System.out
+                .println("                                          __/ |                                           ");
+        System.out
+                .println("                                         |___/                                            ");
+
+        System.out.println();
+        Scanner input = new Scanner(System.in);
+
+        for (int i = contactnumber.length - 1; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                if (amountarray[j] < amountarray[j + 1]) {
+                    double temp = amountarray[j];
+                    amountarray[j] = amountarray[j + 1];
+                    amountarray[j + 1] = temp;
+
+                    String idtemp = idarray[j];
+                    idarray[j] = idarray[j + 1];
+                    idarray[j + 1] = idtemp;
+
+                    String contacttemp = contactnumber[j];
+                    contactnumber[j] = contactnumber[j + 1];
+                    contactnumber[j + 1] = contacttemp;
+
+                    String sizetemp = tshirtsizearray[j];
+                    tshirtsizearray[j] = tshirtsizearray[j + 1];
+                    tshirtsizearray[j + 1] = sizetemp;
+
+                    int qttemp = qtyarray[j];
+                    qtyarray[j] = qtyarray[j + 1];
+                    qtyarray[j + 1] = qttemp;
+
+                    int ststemp = Statusar[j];
+                    Statusar[j] = Statusar[j + 1];
+                    Statusar[j + 1] = qttemp;
+                }
+            }
+        }
+
+        System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s\n", "+-----------------", "-------------", "--------",
+                "--------", "----------", "----------+");
+        System.out.printf("\t\t\t\t|%10s %5s %5s %5s %5s %5s\n", "      Order ID   |", "Customer ID |", " size  |",
+                "  Qty  |", " Amount  |", " Status  |");
+        System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s \n", "+-----------------", "-------------", "--------",
+                "--------", "----------", "----------+");
+
+        for (int i = 0; i < contactnumber.length; i++) {
+
+            System.out.printf("\t\t\t\t|%10s       |%5s   |%5s   |%5d   |%10.2f|%5d     |\n", idarray[i],
+                    contactnumber[i], tshirtsizearray[i], qtyarray[i], amountarray[i], Statusar[i]);
+            System.out.printf("\t\t\t\t|%10s       |%5s        |%5s   |%5s   |%5s     |%5s     |\n", "", "", "", "", "",
+                    "", "", "");
+
+        }
+        System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s\n", "+-----------------", "-------------", "--------",
+                "--------", "----------", "----------+");
+
+        System.out.println();
+
+        System.out.print("To access the Main Menu,Please enter 0 :");
+
+        int main = input.nextInt();
+        if (main == 0) {
+            main(null);
+        } else {
+            clearConsole();
+            ordersamount();
+        }
 
     }
 
-    public static void sizeoftshirt() {
-        // String[][] customerDetails = new String[phoneNumberArray.length][3];
+    public static void setorder() {
 
-        // for (int i = 0; i < phoneNumberArray.length; i++) {
+        System.out.println("   ____          _              _____ _        _             ");
+        System.out.println("  / __ \\        | |            / ____| |      | |            ");
+        System.out.println(" | |  | |_ __ __| | ___ _ __  | (___ | |_ __ _| |_ _   _ ___ ");
+        System.out.println(" | |  | | '__/ _` |/ _ \\ '__|  \\___ \\| __/ _` | __| | | / __|");
+        System.out.println(" | |__| | | | (_| |  __/ |     ____) | || (_| | |_| |_| \\__ \\");
+        System.out.println("  \\____/|_|  \\__,_|\\___|_|    |_____/ \\__\\__,_|\\__|\\__,_|___/");
 
-        // for (int j = 0; j < i; j++) {
+        System.out.println();
 
-        // if (phoneNumberArray[i] == customerDetails[j][0]) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter order ID:");
+        String odrID = input.nextLine();
+        boolean isfound = false;
 
-        // }
-        // }
+        for (int i = 0; i < contactnumber.length; i++) {
+            if (odrID.equals(idarray[i])) {
+                isfound = true;
+                System.out.println("Phone Number :" + contactnumber[i]);
+                System.out.println("Size         :" + tshirtsizearray[i]);
+                System.out.println("QTY          :" + qtyarray[i]);
+                System.out.println("Amount       :" + amountarray[i]);
+                if (Statusar[i] == 0) {
+                    System.out.println("Status       : processing");
+                } else if (Statusar[i] == 1) {
+                    System.out.println("Status       : Delivering");
+                } else if (Statusar[i] == 0) {
+                    System.out.println("Status       : Delivered");
+                }
 
-        // customerDetails[i][0] = phoneNumberArray[i];
-        // customerDetails[i][1] = String.valueOf(qtyArray[i]);
-        // customerDetails[i][2] = String.valueOf(amountArray[i]);
-        // }
+                System.out.println();
+
+                switch (Statusar[i]) {
+                    case 0:
+
+                        System.out.print("Do you want to change this order status? (y/n) :");
+                        char yesno = input.next().charAt(0);
+
+                        if (yesno == 'y' || yesno == 'Y') {
+                            System.out.println("\n\t[1] Order Delivering");
+                            System.out.println("\t[2] Order Delivered");
+                            System.out.print("\nEnter option :");
+                            int option = input.nextInt();
+
+                            switch (option) {
+                                case 1:
+                                    Statusar[i] = Delivering;
+                                    System.out.println("Status Updated");
+                                    break;
+
+                                case 2:
+                                    Statusar[i] = Delivered;
+                                    System.out.println("Status Updated");
+                                    break;
+
+                                default:
+                                    break;
+                            }
+
+                        } else if (yesno == 'N' || yesno == 'n') {
+                            clearConsole();
+                            main(null);
+
+                        }
+                        break;
+
+                    case 1:
+
+                        System.out.print("Do you want to change this order status? (y/n) :");
+                        char yesno1 = input.next().charAt(0);
+
+                        if (yesno1 == 'y' || yesno1 == 'Y') {
+                            System.out.println("\n\t[1] Order Delivered");
+
+                            System.out.print("\nEnter option :");
+                            int option = input.nextInt();
+
+                            switch (option) {
+                                case 1:
+                                    Statusar[i] = Delivered;
+                                    System.out.println("Status Updated");
+                                    break;
+
+                                default:
+                                    break;
+                            }
+
+                        } else if (yesno1 == 'N' || yesno1 == 'n') {
+                            clearConsole();
+                            main(null);
+
+                        }
+                        break;
+
+                    case 2:
+                        System.out.print("Can't change this order status,Order already delivered..!");
+
+                    default:
+                        break;
+                }
+
+                System.out.print("Do you want to change another order status? (y/n) :");
+                char yesno = input.next().charAt(0);
+
+                if (yesno == 'y' || yesno == 'Y') {
+                    clearConsole();
+                    setorder();
+                } else if (yesno == 'N' || yesno == 'n') {
+                    clearConsole();
+                    main(null);
+                }
+
+            }
+        }
+
     }
 
     public final static void clearConsole() {
