@@ -702,12 +702,9 @@ class finalcoursework {
         System.out.println("  ____            _     _____          _____          _                                ");
         System.out.println(" |  _ \\          | |   |_   _|        / ____|        | |                               ");
         System.out.println(" | |_) | ___  ___| |_    | |  _ __   | |    _   _ ___| |_ ___  _ __ ___   ___ _ __ ___ ");
-        System.out.println(
-                " |  _ < / _ \\/ __| __|   | | | '_ \\  | |   | | | / __| __/ _ \\| '_ ` _ \\ / _ \\ '__/ __|");
-        System.out.println(
-                " | |_) |  __/\\__ \\ |_   _| |_| | | | | |___| |_| \\__ \\ || (_) | | | | | |  __/ |  \\__ \\");
-        System.out.println(
-                " |____/ \\___||___/\\__| |_____|_| |_|  \\_____\\__,_|___/\\__\\___/|_| |_| |_|\\___|_|  |___/");
+        System.out.println(" |  _ < / _ \\/ __| __|   | | | '_ \\  | |   | | | / __| __/ _ \\| '_ ` _ \\ / _ \\ '__/ __|");
+        System.out.println(" | |_) |  __/\\__ \\ |_   _| |_| | | | | |___| |_| \\__ \\ || (_) | | | | | |  __/ |  \\__ \\");
+        System.out.println(" |____/ \\___||___/\\__| |_____|_| |_|  \\_____\\__,_|___/\\__\\___/|_| |_| |_|\\___|_|  |___/");
 
         System.out.println(
                 "\n\n____________________________________________________________________________________________\n\n");
@@ -732,7 +729,7 @@ class finalcoursework {
 
             for (int j = i + 1; j < contactnumber.length; j++) {
                 if (contactnumber[i].equals(contactnumber[j])) {
-                    tempqty += qtyarray[j];
+                    tempqty =tempqty + qtyarray[j];
                     tempamount += amountarray[j];
                     processed[j] = true;
                 }
@@ -856,8 +853,7 @@ class finalcoursework {
         System.out.println("    \\  /  | |  __/\\ V  V /  | |___| |_| \\__ \\ || (_) | | | | | |  __/ |  \\__ \\");
         System.out.println("     \\/   |_|\\___| \\_/\\_/    \\_____\\__,_|___/\\__\\___/|_| |_| |_|\\___|_|  |___/");
 
-        System.out
-                .println("\n\n__________________________________________________________________________________\n\n");
+        System.out.println("\n\n__________________________________________________________________________________\n\n");
 
         String[][] amount2Darr = new String[contactnumber.length][3];
         boolean[] processed = new boolean[contactnumber.length];
@@ -890,12 +886,9 @@ class finalcoursework {
         // System.out.println(Arrays.toString(bestCustomer[3]));
         // System.out.println(Arrays.toString(bestCustomer[4]));
 
-        System.out.printf("\t\t\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------",
-                "-------------------+");
-        System.out.printf("\t\t\t\t\t|%15s %8s %14s\n", "      Size          |", "     QTY     |",
-                "    Amount        |");
-        System.out.printf("\t\t\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------",
-                "-------------------+");
+        System.out.printf("\t\t\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------","-------------------+");
+        System.out.printf("\t\t\t\t\t|%15s %8s %14s\n", "      Size          |", "     QTY     |","    Amount        |");
+        System.out.printf("\t\t\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------","-------------------+");
 
         for (int i = 0; i < amount2Darr.length; i++) {
             if (amount2Darr[i][2] != null) {
@@ -905,8 +898,7 @@ class finalcoursework {
             }
 
         }
-        System.out.printf("\t\t\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------",
-                "-------------------+");
+        System.out.printf("\t\t\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------","-------------------+");
     }
 
     public static void AllCustomer() {
@@ -922,17 +914,14 @@ class finalcoursework {
                 "  / ____ \\| | | | |___| |_| \\__ \\ || (_) | | | | | |  __/ |    | | \\ \\  __/ |_) | (_) | |  | |_ ");
         System.out.println(
                 " /_/    \\_\\_|_|  \\_____\\__,_|___/\\__\\___/|_| |_| |_|\\___|_|    |_|  \\_\\___| .__/ \\___/|_|   \\__|");
-        System.out.println(
-                "                                                                          | |                   ");
-        System.out.println(
-                "                                                                          |_|                   ");
+        System.out.println("                                                                          | |                   ");
+        System.out.println("                                                                          |_|                   ");
 
         System.out.println();
 
-        System.out.println(
-                "____________________________________________________________________________________________________________");
+        System.out.println( "____________________________________________________________________________________________________________");
 
-        String[][] tshize2Darr = new String[contactnumber.length][8];
+        int[][] tshize2Darr = new int[contactnumber.length][8];
         boolean[] processed = new boolean[contactnumber.length];
 
         for (int i = 0; i < contactnumber.length; i++) {
@@ -940,36 +929,44 @@ class finalcoursework {
                 continue;
             }
 
-            tshize2Darr[i][1] = ("0");
-            tshize2Darr[i][2] = ("0");
-            tshize2Darr[i][3] = ("0");
-            tshize2Darr[i][4] = ("0");
-            tshize2Darr[i][5] = ("0");
-            tshize2Darr[i][6] = ("0");
+            // tshize2Darr[i][1] = ("0");
+            // tshize2Darr[i][2] = ("0");
+            // tshize2Darr[i][3] = ("0");
+            // tshize2Darr[i][4] = ("0");
+            // tshize2Darr[i][5] = ("0");
+            // tshize2Darr[i][6] = ("0");
+
+            //recreate count variable for this method
+            int Mcount=0;
+            int XScount=0;
+            int Scount=0;
+            int Lcount=0;
+            int XLcount=0;
+            int XXLcount=0;
 
             if (tshirtsizearray[i].equals("M")) {
-                tempMcount = qtyarray[i];
-                tshize2Darr[i][3] = String.valueOf(tempMcount);
+                Mcount = qtyarray[i];
+                tshize2Darr[i][3] = tempMcount;
 
             } else if (tshirtsizearray[i].equals("XS")) {
-                tempXScount = qtyarray[i];
-                tshize2Darr[i][1] = String.valueOf(tempXScount);
+                XScount = qtyarray[i];
+                tshize2Darr[i][1] = XScount;
 
             } else if (tshirtsizearray[i].equals("S")) {
-                tempScount = qtyarray[i];
-                tshize2Darr[i][2] = String.valueOf(tempScount);
+                Scount = qtyarray[i];
+                tshize2Darr[i][2] = Scount;
 
             } else if (tshirtsizearray[i].equals("L")) {
-                tempLcount = qtyarray[i];
-                tshize2Darr[i][4] = String.valueOf(tempLcount);
+                Lcount = qtyarray[i];
+                tshize2Darr[i][4] = Lcount;
 
             } else if (tshirtsizearray[i].equals("XL")) {
-                tempXLcount = qtyarray[i];
-                tshize2Darr[i][5] = String.valueOf(tempXLcount);
+                XLcount = qtyarray[i];
+                tshize2Darr[i][5] = XLcount;
 
             } else if (tshirtsizearray[i].equals("XXL")) {
-                tempXXLcount = qtyarray[i];
-                tshize2Darr[i][6] = String.valueOf(tempXXLcount);
+                XXLcount = qtyarray[i];
+                tshize2Darr[i][6] = XXLcount;
             }
 
             double tempamount = amountarray[i];
@@ -978,48 +975,63 @@ class finalcoursework {
             for (int j = i + 1; j < contactnumber.length; j++) {
                 if (contactnumber[i].equals(contactnumber[j])) {
                     if (tshirtsizearray[j].equals("M")) {
-                        tempMcount += qtyarray[j];
-                        tshize2Darr[i][3] = String.valueOf(tempMcount);
+                        Mcount += qtyarray[j];
+                        tshize2Darr[i][3] = Mcount;
 
                     } else if (tshirtsizearray[j].equals("XS")) {
-                        tempXScount += qtyarray[j];
-                        tshize2Darr[i][1] = String.valueOf(tempXScount);
+                        XScount += qtyarray[j];
+                        tshize2Darr[i][1] = XScount;
 
                     } else if (tshirtsizearray[j].equals("S")) {
-                        tempScount += qtyarray[j];
-                        tshize2Darr[i][2] = String.valueOf(tempScount);
+                        Scount += qtyarray[j];
+                        tshize2Darr[i][2] = Scount;
 
                     } else if (tshirtsizearray[j].equals("L")) {
-                        tempLcount += qtyarray[j];
-                        tshize2Darr[i][4] = String.valueOf(tempLcount);
+                        Lcount += qtyarray[j];
+                        tshize2Darr[i][4] = Lcount;
 
                     } else if (tshirtsizearray[j].equals("XL")) {
-                        tempXLcount += qtyarray[j];
-                        tshize2Darr[i][5] = String.valueOf(tempXLcount);
+                        XLcount += qtyarray[j];
+                        tshize2Darr[i][5] = XLcount;
 
                     } else if (tshirtsizearray[j].equals("XXL")) {
                         tempXXLcount += qtyarray[j];
-                        tshize2Darr[i][6] = String.valueOf(tempXXLcount);
+                        tshize2Darr[i][6] = XXLcount;
                     }
                     tempamount += amountarray[j];
                     processed[j] = true;
                 }
             }
 
-            tshize2Darr[i][0] = contactnumber[i];
+            tshize2Darr[i][0] = Integer.parseInt(contactnumber[i]);
             // tshize2Darr[i][1] = String.valueOf(tempXScount);
             // tshize2Darr[i][2] = String.valueOf(tempScount);
             // tshize2Darr[i][3] = String.valueOf(tempMcount);
             // tshize2Darr[i][4] = String.valueOf(tempLcount);
             // tshize2Darr[i][5] = String.valueOf(tempXLcount);
             // tshize2Darr[i][6] = String.valueOf(tempXXLcount);
-            tshize2Darr[i][7] = String.valueOf(tempamount);
+            tshize2Darr[i][7] = (int)tempamount;
 
         }
 
         for (int i = 0; i < tshize2Darr.length; i++) {
             System.out.println(Arrays.toString(tshize2Darr[i]));
         }
+
+        System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s+%5s+%12s \n","+-------------------------","--------","--------","--------","--------","--------","--------","---------------+");
+        System.out.printf("\t\t\t\t|%10s %5s %5s %5s %5s %5s %5s %12s\n","      Phone Number       |"," XS    |","   S   |","    M  |","    L  |","   XL  |","   XXL |","     Total    |");
+        System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s+%5s+%12s \n","+-------------------------","--------","--------","--------","--------","--------","--------","---------------+");
+; 
+
+
+        for (int i = 0; i < tshize2Darr.length; i++) {
+            if (tshize2Darr[i][0] != 0) {
+                System.out.printf("\t\t\t\t|%010d               |%5d   |%5d   |%5d   |%5d   |%5d   |%5d   |%12d   | \n", tshize2Darr[i][0], tshize2Darr[i][1],tshize2Darr[i][2],tshize2Darr[i][3],tshize2Darr[i][4],tshize2Darr[i][5],tshize2Darr[i][6],tshize2Darr[i][7]);
+                System.out.printf("\t\t\t\t|%10s               |%5s   |%5s   |%5s   |%5s   |%5s   |%5s   |%12s   | \n", "", "", "","","","","","");
+            }
+
+        }
+        System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s+%5s+%12s \n", "+-------------------------", "--------","--------","--------","--------","--------","--------","----------------+");
     }
 
     public static void ItemReports() {
