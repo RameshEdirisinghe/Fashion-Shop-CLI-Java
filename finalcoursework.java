@@ -286,12 +286,6 @@ class finalcoursework {
         tempStatusar[tempStatusar.length - 1] = Status;
         Statusar = tempStatusar;
 
-        // System.out.println(Arrays.toString(contactnumber));
-        // System.out.println(Arrays.toString(idarray));
-        // System.out.println(Arrays.toString(tshirtsizearray));
-        // System.out.println(Arrays.toString(amountarray));
-        // System.out.println(Arrays.toString(qtyarray));
-        // System.out.println("order placed");
     }
 
     public static void navigate() {
@@ -451,11 +445,11 @@ class finalcoursework {
                 System.out.println("Size         :" + tshirtsizearray[i]);
                 System.out.println("QTY          :" + qtyarray[i]);
                 System.out.println("Amount       :" + amountarray[i]);
-                if (Status == 0) {
+                if (Statusar[i] == 0) {
                     System.out.println("Status       : Processing");
-                } else if (Status == 1) {
+                } else if (Statusar[i] == 1) {
                     System.out.println("Status       : Delivering");
-                } else if (Status == 2) {
+                } else if (Statusar[i] == 2) {
                     System.out.println("Status       : Delivered");
                 }
 
@@ -521,11 +515,11 @@ class finalcoursework {
                 System.out.println("Size         :" + tshirtsizearray[i]);
                 System.out.println("QTY          :" + qtyarray[i]);
                 System.out.println("Amount       :" + amountarray[i]);
-                if (Status == 0) {
+                if (Statusar[i] == 0) {
                     System.out.println("Status       : Processing");
-                } else if (Status == 1) {
+                } else if (Statusar[i] == 1) {
                     System.out.println("Status       : Delivering");
-                } else if (Status == 2) {
+                } else if (Statusar[i] == 2) {
                     System.out.println("Status       : Delivered");
                 }
 
@@ -560,13 +554,6 @@ class finalcoursework {
 
         }
 
-        // check
-        // System.out.println(Arrays.toString(contactnumber));
-        // System.out.println(Arrays.toString(idarray));
-        // System.out.println(Arrays.toString(tshirtsizearray));
-        // System.out.println(Arrays.toString(qtyarray));
-        // System.out.println(Arrays.toString(amountarray));
-
         if (istruedelete == false) {
             System.out.println("\tInvalid Input...");
             System.out.print("Do you want to enter another Oder ID? (y/n) :");
@@ -592,6 +579,7 @@ class finalcoursework {
         int[] tempqty = new int[qtyarray.length - 1];
         double[] tempamountarray = new double[amountarray.length - 1];
         String[] temptshirtsizearray = new String[tshirtsizearray.length - 1];
+        int[] tempStatusar = new int[Statusar.length-1];
 
         for (int i = 0, j = 0; i < idarray.length; i++) {
 
@@ -601,6 +589,7 @@ class finalcoursework {
                 tempamountarray[j] = amountarray[i];
                 temptshirtsizearray[j] = tshirtsizearray[i];
                 tempqty[j] = qtyarray[i];
+                tempStatusar[j]= Statusar[i];
                 j++;
             }
         }
@@ -610,12 +599,7 @@ class finalcoursework {
         amountarray = tempamountarray;
         tshirtsizearray = temptshirtsizearray;
         qtyarray = tempqty;
-
-        // System.out.println(Arrays.toString(contactnumber));
-        // System.out.println(Arrays.toString(idarray));
-        // System.out.println(Arrays.toString(tshirtsizearray));
-        // System.out.println(Arrays.toString(qtyarray));
-        // System.out.println(Arrays.toString(amountarray));
+        Statusar = tempStatusar;
 
     }
 
@@ -642,12 +626,15 @@ class finalcoursework {
 
         switch (Optionreports) {
             case 1:
+                clearConsole();
                 CustomerReports();
                 break;
             case 2:
+                clearConsole();
                 ItemReports();
                 break;
             case 3:
+                clearConsole();
                 OrdersReports();
                 break;
             default:
@@ -684,12 +671,15 @@ class finalcoursework {
 
         switch (OptionCusReports) {
             case 1:
+                clearConsole();
                 BestCustomer();
                 break;
             case 2:
+                clearConsole();
                 ViewCustomer();
                 break;
             case 3:
+                clearConsole();
                 AllCustomer();
                 break;
             default:
@@ -757,107 +747,29 @@ class finalcoursework {
             }
         }
 
-        System.out.println("+--------------------+--------------+-------------------+");
-        System.out.println("|    Customer ID     |      QTY     |     Amount        |");
-        System.out.println("+--------------------+--------------+-------------------+");
+        System.out.println("\t\t+--------------------+--------------+-------------------+");
+        System.out.println("\t\t|    Customer ID     |      QTY     |     Amount        |");
+        System.out.println("\t\t+--------------------+--------------+-------------------+");
 
         for (int i = 0; i < validCount; i++) {
-            System.out.printf("\t\t\t\t\t| %15s | %8s | %14s |\n", amount2Darr[i][0], amount2Darr[i][1],
+            System.out.printf("\t\t| %19s|%14s|%19s|\n", amount2Darr[i][0], amount2Darr[i][1],
                     amount2Darr[i][2]);
-            System.out.printf("\t\t\t\t\t| %15s |%8s | %14s |\n", "", "", "");
+            System.out.printf("\t\t| %19s|%14s|%19s|\n", "", "", "");
         }
 
-        System.out.println("+--------------------+--------------+-------------------+");
+        System.out.println("\t\t+--------------------+--------------+-------------------+");
 
         System.out.println();
         System.out.print("To access the Main Menu,Please enter 0 :");
         Scanner input = new Scanner(System.in);
         int main = input.nextInt();
         if (main == 0) {
+            clearConsole();
             main(null);
         } else {
             clearConsole();
             BestCustomer();
         }
-        // String[][] amount2Darr = new String[contactnumber.length][3];
-        // boolean[] processed = new boolean[contactnumber.length];
-
-        // for (int i = 0; i < contactnumber.length; i++) {
-        // if (processed[i]) {
-        // continue;
-        // }
-
-        // int tempqty = qtyarray[i];
-        // double tempamount = amountarray[i];
-        // processed[i] = true;
-
-        // for (int j = i + 1; j < contactnumber.length; j++) {
-        // if (contactnumber[i].equals(contactnumber[j])) {
-        // tempqty += qtyarray[j];
-        // tempamount += amountarray[j];
-        // processed[j] = true;
-        // }
-        // }
-
-        // amount2Darr[i][0] = contactnumber[i];
-        // amount2Darr[i][1] = String.valueOf(tempqty);
-        // amount2Darr[i][2] = String.valueOf(tempamount);
-        // }
-
-        // for (int i = 0; i < amount2Darr.length; i++) {
-        // System.out.println(Arrays.toString(amount2Darr[i]));
-        // }
-
-        // int validCount = 0;
-
-        // for (int i = 0; i < amount2Darr.length; i++) {
-        // if (amount2Darr[i] != null && amount2Darr[i][0] != null) {
-        // // Move non-null row to the next available slot at the beginning
-        // amount2Darr[validCount] = amount2Darr[i];
-        // validCount++;
-        // }
-        // }
-
-        // for (int i = validCount - 1; i > 0; i--) {
-        // for (int j = 0; j < i; j++) {
-
-        // if (amount2Darr[j][2] != null && amount2Darr[j + 1][2] != null) {
-
-        // if (Double.parseDouble(amount2Darr[j][2]) < Double.parseDouble(amount2Darr[j
-        // + 1][2])) {
-
-        // String[] temp = amount2Darr[j];
-        // amount2Darr[j] = amount2Darr[j + 1];
-        // amount2Darr[j + 1] = temp;
-        // }
-        // }
-
-        // }
-        // }
-
-        // System.out.printf("\t\t\t\t\t%15s+%8s+%14s\n", "+--------------------",
-        // "--------------",
-        // "-------------------+");
-        // System.out.printf("\t\t\t\t\t|%15s %8s %14s\n", " Size |", " QTY |",
-        // " Amount |");
-        // System.out.printf("\t\t\t\t\t%15s+%8s+%14s\n", "+--------------------",
-        // "--------------",
-        // "-------------------+");
-
-        // // System.out.println(Arrays.toString(bestCustomer[4]));
-
-        // for (int i = 0; i < amount2Darr.length; i++) {
-        // if (amount2Darr[i][2] != null) {
-        // System.out.printf("\t\t\t\t\t| %15s | %8s | %14s |\n", amount2Darr[i][0],
-        // amount2Darr[i][1],
-        // amount2Darr[i][2]);
-        // System.out.printf("\t\t\t\t\t| %15s |%8s | %14s |\n", "", "", "");
-        // }
-
-        // }
-        // System.out.printf("\t\t\t\t\t%15s+%8s+%14s\n", "+--------------------",
-        // "--------------",
-        // "-------------------+");
 
     }
 
@@ -898,34 +810,29 @@ class finalcoursework {
             amount2Darr[i][2] = String.valueOf(tempamount);
         }
 
-        // System.out.println(Arrays.toString(bestCustomer[0]));
-        // System.out.println(Arrays.toString(bestCustomer[1]));
-        // System.out.println(Arrays.toString(bestCustomer[2]));
-        // System.out.println(Arrays.toString(bestCustomer[3]));
-        // System.out.println(Arrays.toString(bestCustomer[4]));
-
-        System.out.printf("\t\t\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------",
+        System.out.printf("\t\t%15s+%8s+%14s\n", "+--------------------", "--------------",
                 "-------------------+");
-        System.out.printf("\t\t\t\t\t|%15s %8s %14s\n", "     Customer ID    |", "     QTY     |",
+        System.out.printf("\t\t|%15s %8s %14s\n", "     Customer ID    |", "     QTY     |",
                 "    Amount        |");
-        System.out.printf("\t\t\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------",
+        System.out.printf("\t\t%15s+%8s+%14s\n", "+--------------------", "--------------",
                 "-------------------+");
 
         for (int i = 0; i < amount2Darr.length; i++) {
             if (amount2Darr[i][2] != null) {
-                System.out.printf("\t\t\t\t\t| %15s    | %8s     |  %14s   |\n", amount2Darr[i][0], amount2Darr[i][1],
+                System.out.printf("\t\t| %15s    | %8s     |  %14s   |\n", amount2Darr[i][0], amount2Darr[i][1],
                         amount2Darr[i][2]);
-                System.out.printf("\t\t\t\t\t| %15s    |%8s      |  %14s   |\n", "", "", "");
+                System.out.printf("\t\t| %15s    |%8s      |  %14s   |\n", "", "", "");
             }
 
         }
-        System.out.printf("\t\t\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------",
+        System.out.printf("\t\t%15s+%8s+%14s\n", "+--------------------", "--------------",
                 "-------------------+");
 
         System.out.println();
         System.out.print("To access the Main Menu,Please enter 0 :");
         int main = input.nextInt();
         if (main == 0) {
+            clearConsole();
             main(null);
         } else {
             clearConsole();
@@ -954,7 +861,7 @@ class finalcoursework {
         System.out.println();
 
         System.out.println(
-                "____________________________________________________________________________________________________________");
+                "____________________________________________________________________________________________________________\n");
 
         int[][] tshize2Darr = new int[contactnumber.length][8];
         boolean[] processed = new boolean[contactnumber.length];
@@ -964,14 +871,6 @@ class finalcoursework {
                 continue;
             }
 
-            // tshize2Darr[i][1] = ("0");
-            // tshize2Darr[i][2] = ("0");
-            // tshize2Darr[i][3] = ("0");
-            // tshize2Darr[i][4] = ("0");
-            // tshize2Darr[i][5] = ("0");
-            // tshize2Darr[i][6] = ("0");
-
-            // recreate count variable for this method
             int Mcount = 0;
             int XScount = 0;
             int Scount = 0;
@@ -1040,39 +939,33 @@ class finalcoursework {
             }
 
             tshize2Darr[i][0] = Integer.parseInt(contactnumber[i]);
-            // tshize2Darr[i][1] = String.valueOf(tempXScount);
-            // tshize2Darr[i][2] = String.valueOf(tempScount);
-            // tshize2Darr[i][3] = String.valueOf(tempMcount);
-            // tshize2Darr[i][4] = String.valueOf(tempLcount);
-            // tshize2Darr[i][5] = String.valueOf(tempXLcount);
-            // tshize2Darr[i][6] = String.valueOf(tempXXLcount);
             tshize2Darr[i][7] = (int) tempamount;
 
         }
 
-        for (int i = 0; i < tshize2Darr.length; i++) {
-            System.out.println(Arrays.toString(tshize2Darr[i]));
-        }
+        // for (int i = 0; i < tshize2Darr.length; i++) {
+        // System.out.println(Arrays.toString(tshize2Darr[i]));
+        // }
 
-        System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s+%5s+%12s \n", "+-------------------------", "--------",
+        System.out.printf("\t\t%10s+%5s+%5s+%5s+%5s+%5s+%5s+%12s \n", "+-------------------------", "--------",
                 "--------", "--------", "--------", "--------", "--------", "---------------+");
-        System.out.printf("\t\t\t\t|%10s %5s %5s %5s %5s %5s %5s %12s\n", "      Phone Number       |", " XS    |",
+        System.out.printf("\t\t|%10s %5s %5s %5s %5s %5s %5s %12s\n", "      Phone Number       |", " XS    |",
                 "   S   |", "    M  |", "    L  |", "   XL  |", "   XXL |", "     Total    |");
-        System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s+%5s+%12s \n", "+-------------------------", "--------",
+        System.out.printf("\t\t%10s+%5s+%5s+%5s+%5s+%5s+%5s+%12s \n", "+-------------------------", "--------",
                 "--------", "--------", "--------", "--------", "--------", "---------------+");
         ;
 
         for (int i = 0; i < tshize2Darr.length; i++) {
             if (tshize2Darr[i][0] != 0) {
-                System.out.printf("\t\t\t\t|%010d               |%5d   |%5d   |%5d   |%5d   |%5d   |%5d   |%12d   | \n",
+                System.out.printf("\t\t|%010d               |%5d   |%5d   |%5d   |%5d   |%5d   |%5d   |%12d   | \n",
                         tshize2Darr[i][0], tshize2Darr[i][1], tshize2Darr[i][2], tshize2Darr[i][3], tshize2Darr[i][4],
                         tshize2Darr[i][5], tshize2Darr[i][6], tshize2Darr[i][7]);
-                System.out.printf("\t\t\t\t|%10s               |%5s   |%5s   |%5s   |%5s   |%5s   |%5s   |%12s   | \n",
+                System.out.printf("\t\t|%10s               |%5s   |%5s   |%5s   |%5s   |%5s   |%5s   |%12s   | \n",
                         "", "", "", "", "", "", "", "");
             }
 
         }
-        System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s+%5s+%12s \n", "+-------------------------", "--------",
+        System.out.printf("\t\t%10s+%5s+%5s+%5s+%5s+%5s+%5s+%12s \n", "+-------------------------", "--------",
                 "--------", "--------", "--------", "--------", "--------", "----------------+");
 
         System.out.println();
@@ -1080,6 +973,7 @@ class finalcoursework {
         Scanner input = new Scanner(System.in);
         int main = input.nextInt();
         if (main == 0) {
+            clearConsole();
             main(null);
         } else {
             clearConsole();
@@ -1100,19 +994,23 @@ class finalcoursework {
         Scanner input = new Scanner(System.in);
         System.out.println("\t[1] Best Selling Categories sorted by Qty");
         System.out.println("\t[2] Best Selling Categories Sorted by amount");
-
+        System.out.println();
         System.out.print("Enter option :");
         int option = input.nextInt();
 
         switch (option) {
             case 1:
+                clearConsole();
                 sortqty();
                 break;
             case 2:
+                clearConsole();
                 sortamount();
                 break;
 
             default:
+                clearConsole();
+                ItemReports();
                 break;
         }
 
@@ -1130,6 +1028,7 @@ class finalcoursework {
 
         System.out.println("\n\n________________________________________________________________________\n\n");
 
+        System.out.println();
         String[][] qty2Darr = new String[6][3];
         boolean[] processed = new boolean[contactnumber.length];
         qty2Darr[0][0] = "M";
@@ -1162,9 +1061,6 @@ class finalcoursework {
         // int validCount = 0;
 
         for (int i = 0; i < contactnumber.length; i++) {
-            // if (processed[i]) {
-            // continue;
-            // }
 
             if (tshirtsizearray[i].equals("M")) {
                 Mqty += qtyarray[i];
@@ -1191,22 +1087,6 @@ class finalcoursework {
                 qty2Darr[5][1] = String.valueOf(Lqty);
             }
 
-            // int tempqty = qtyarray[i];
-            // double tempamount = amountarray[i];
-            // processed[i] = true;
-
-            // for (int j = i + 1; j < contactnumber.length; j++) {
-            // if (contactnumber[i].equals(contactnumber[j])) {
-            // tempqty = tempqty + qtyarray[j];
-            // tempamount += amountarray[j];
-            // processed[j] = true;
-            // }
-            // }
-
-            // amount2Darr[validCount][0] = contactnumber[i];
-            // amount2Darr[validCount][1] = String.valueOf(tempqty);
-            // amount2Darr[validCount][2] = String.valueOf(tempamount);
-            // validCount++;
         }
         Mtotal = Mqty * 900;
         XLtotal = XLqty * 1100;
@@ -1222,9 +1102,9 @@ class finalcoursework {
         qty2Darr[4][2] = String.valueOf(XXLtotal);
         qty2Darr[5][2] = String.valueOf(Ltotal);
 
-        for (int i = 0; i < qty2Darr.length; i++) {
-            System.out.println(Arrays.toString(qty2Darr[i]));
-        }
+        // for (int i = 0; i < qty2Darr.length; i++) {
+        // System.out.println(Arrays.toString(qty2Darr[i]));
+        // }
 
         for (int i = 5; i > 0; i--) {
 
@@ -1237,23 +1117,24 @@ class finalcoursework {
             }
         }
 
-        System.out.printf("\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
-        System.out.printf("\t\t\t|%15s %8s %14s\n", "      Size          |", "     QTY     |", "    Amount        |");
-        System.out.printf("\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
+        System.out.printf("\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
+        System.out.printf("\t\t|%15s %8s %14s\n", "      Size          |", "     QTY     |", "    Amount        |");
+        System.out.printf("\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
 
         for (int i = 0; i < qty2Darr.length; i++) {
-            System.out.printf("\t\t\t| %15s    | %8s     |  %14s   |\n", qty2Darr[i][0], qty2Darr[i][1],
+            System.out.printf("\t\t| %15s    | %8s     |  %14s   |\n", qty2Darr[i][0], qty2Darr[i][1],
                     qty2Darr[i][2]);
-            System.out.printf("\t\t\t| %15s    |%8s      |  %14s   |\n", "", "", "");
+            System.out.printf("\t\t| %15s    |%8s      |  %14s   |\n", "", "", "");
 
         }
-        System.out.printf("\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
+        System.out.printf("\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
 
         System.out.println();
         System.out.print("To access the Main Menu,Please enter 0 :");
         Scanner input = new Scanner(System.in);
         int main = input.nextInt();
         if (main == 0) {
+            clearConsole();
             main(null);
         } else {
             clearConsole();
@@ -1283,9 +1164,10 @@ class finalcoursework {
         System.out.println(
                 "\n\n_____________________________________________________________________________________________\n\n");
 
+        System.out.println();
         Scanner input = new Scanner(System.in);
         String[][] size2Darr = new String[6][3];
-        boolean[] processed = new boolean[contactnumber.length];
+
         size2Darr[0][0] = "M";
         size2Darr[1][0] = "XL";
         size2Darr[2][0] = "XS";
@@ -1316,9 +1198,6 @@ class finalcoursework {
         // int validCount = 0;
 
         for (int i = 0; i < contactnumber.length; i++) {
-            // if (processed[i]) {
-            // continue;
-            // }
 
             if (tshirtsizearray[i].equals("M")) {
                 Mqty += qtyarray[i];
@@ -1345,22 +1224,6 @@ class finalcoursework {
                 size2Darr[5][1] = String.valueOf(Lqty);
             }
 
-            // int tempqty = qtyarray[i];
-            // double tempamount = amountarray[i];
-            // processed[i] = true;
-
-            // for (int j = i + 1; j < contactnumber.length; j++) {
-            // if (contactnumber[i].equals(contactnumber[j])) {
-            // tempqty = tempqty + qtyarray[j];
-            // tempamount += amountarray[j];
-            // processed[j] = true;
-            // }
-            // }
-
-            // amount2Darr[validCount][0] = contactnumber[i];
-            // amount2Darr[validCount][1] = String.valueOf(tempqty);
-            // amount2Darr[validCount][2] = String.valueOf(tempamount);
-            // validCount++;
         }
         Mtotal = Mqty * 900;
         XLtotal = XLqty * 1100;
@@ -1376,10 +1239,6 @@ class finalcoursework {
         size2Darr[4][2] = String.valueOf(XXLtotal);
         size2Darr[5][2] = String.valueOf(Ltotal);
 
-        for (int i = 0; i < size2Darr.length; i++) {
-            System.out.println(Arrays.toString(size2Darr[i]));
-        }
-
         for (int i = 5; i > 0; i--) {
 
             for (int j = 0; j < i; j++) {
@@ -1391,21 +1250,22 @@ class finalcoursework {
             }
         }
 
-        System.out.printf("\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
+        System.out.printf("\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
         System.out.printf("\t\t\t|%15s %8s %14s\n", "      Size          |", "     QTY     |", "    Amount        |");
         System.out.printf("\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
 
         for (int i = 0; i < size2Darr.length; i++) {
-            System.out.printf("\t\t\t| %15s    | %8s     |  %14s   |\n", size2Darr[i][0], size2Darr[i][1],
+            System.out.printf("\t\t| %15s    | %8s     |  %14s   |\n", size2Darr[i][0], size2Darr[i][1],
                     size2Darr[i][2]);
-            System.out.printf("\t\t\t| %15s    |%8s      |  %14s   |\n", "", "", "");
+            System.out.printf("\t\t| %15s    |%8s      |  %14s   |\n", "", "", "");
         }
-        System.out.printf("\t\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
+        System.out.printf("\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
 
         System.out.println();
         System.out.print("To access the Main Menu,Please enter 0 :");
         int main = input.nextInt();
         if (main == 0) {
+            clearConsole();
             main(null);
         } else {
             clearConsole();
@@ -1426,19 +1286,23 @@ class finalcoursework {
         System.out.println();
         System.out.println("\t[1] All Orders ");
         System.out.println("\t[2] Orders By Amount\n");
-
+        System.out.println();
         System.out.print("Enter option:");
         Scanner input = new Scanner(System.in);
         int option = input.nextInt();
 
         switch (option) {
             case 1:
+                clearConsole();
                 allorders();
                 break;
             case 2:
+                clearConsole();
                 ordersamount();
                 break;
             default:
+                clearConsole();
+                OrdersReports();
                 break;
         }
     }
@@ -1451,25 +1315,39 @@ class finalcoursework {
         System.out.println("    \\  /  | |  __/\\ V  V /  | |__| | | | (_| |  __/ |  \\__ \\");
         System.out.println("     \\/   |_|\\___| \\_/\\_/    \\____/|_|  \\__,_|\\___|_|  |___/");
 
+        System.out.println("________________________________________________________________________");
+
         System.out.println();
         Scanner input = new Scanner(System.in);
 
-        System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s\n", "+-----------------", "-------------", "--------",
+        String[] statuStringar = new String[Statusar.length];
+
+        for (int i = 0; i < statuStringar.length; i++) {
+            if (Statusar[i] == 0) {
+                statuStringar[i] = "Processing";
+            } else if (Statusar[i] == 1) {
+                statuStringar[i] = "Delivering";
+            } else if (Statusar[i] == 2) {
+                statuStringar[i] = "Delivered";
+            }
+        }
+
+        System.out.printf("\t\t%10s+%5s+%5s+%5s+%5s+%6s\n", "+-----------------", "-------------", "--------",
                 "--------", "----------", "----------+");
-        System.out.printf("\t\t\t\t|%10s %5s %5s %5s %5s %5s\n", "      Order ID   |", "Customer ID |", " size  |",
+        System.out.printf("\t\t|%10s %5s %5s %5s %5s %6s\n", "      Order ID   |", "Customer ID |", " size  |",
                 "  Qty  |", " Amount  |", " Status  |");
-        System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s \n", "+-----------------", "-------------", "--------",
+        System.out.printf("\t\t%10s+%5s+%5s+%5s+%5s+%6s \n", "+-----------------", "-------------", "--------",
                 "--------", "----------", "----------+");
 
         for (int i = contactnumber.length - 1; i >= 0; i--) {
 
-            System.out.printf("\t\t\t\t|%10s       |%5s   |%5s   |%5d   |%5.2f   |%5d     |\n", idarray[i],
-                    contactnumber[i], tshirtsizearray[i], qtyarray[i], amountarray[i], Statusar[i]);
-            System.out.printf("\t\t\t\t|%10s       |%5s        |%5s   |%5s   |%5s     |%5s     |\n", "", "", "", "", "",
+            System.out.printf("\t\t|%10s       |%5s   |%5s   |%5d   |%5.2f   |%6s|\n", idarray[i],
+                    contactnumber[i], tshirtsizearray[i], qtyarray[i], amountarray[i], statuStringar[i]);
+            System.out.printf("\t\t|%10s       |%5s        |%5s   |%5s   |%5s     |%10s|\n", "", "", "", "", "",
                     "", "", "");
 
         }
-        System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s\n", "+-----------------", "-------------", "--------",
+        System.out.printf("\t\t%10s+%5s+%5s+%5s+%5s+%5s\n", "+-----------------", "-------------", "--------",
                 "--------", "----------", "----------+");
 
         System.out.println();
@@ -1478,6 +1356,7 @@ class finalcoursework {
 
         int main = input.nextInt();
         if (main == 0) {
+            clearConsole();
             main(null);
         } else {
             clearConsole();
@@ -1506,6 +1385,18 @@ class finalcoursework {
         System.out.println();
         Scanner input = new Scanner(System.in);
 
+        String[] statuStringar = new String[Statusar.length];
+
+        for (int i = 0; i < statuStringar.length; i++) {
+            if (Statusar[i] == 0) {
+                statuStringar[i] = "Processing";
+            } else if (Statusar[i] == 1) {
+                statuStringar[i] = "Delivering";
+            } else if (Statusar[i] == 2) {
+                statuStringar[i] = "Delivered";
+            }
+        }
+
         for (int i = contactnumber.length - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
                 if (amountarray[j] < amountarray[j + 1]) {
@@ -1529,29 +1420,29 @@ class finalcoursework {
                     qtyarray[j] = qtyarray[j + 1];
                     qtyarray[j + 1] = qttemp;
 
-                    int ststemp = Statusar[j];
-                    Statusar[j] = Statusar[j + 1];
-                    Statusar[j + 1] = qttemp;
+                    String ststemp = statuStringar[j];
+                    statuStringar[j] = statuStringar[j + 1];
+                    statuStringar[j + 1] = ststemp;
                 }
             }
         }
 
-        System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s\n", "+-----------------", "-------------", "--------",
+        System.out.printf("\t\t%10s+%5s+%5s+%5s+%5s+%10s\n", "+-----------------", "-------------", "--------",
                 "--------", "----------", "----------+");
-        System.out.printf("\t\t\t\t|%10s %5s %5s %5s %5s %5s\n", "      Order ID   |", "Customer ID |", " size  |",
+        System.out.printf("\t\t|%10s %5s %5s %5s %5s %10s\n", "      Order ID   |", "Customer ID |", " size  |",
                 "  Qty  |", " Amount  |", " Status  |");
-        System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s \n", "+-----------------", "-------------", "--------",
+        System.out.printf("\t\t%10s+%5s+%5s+%5s+%5s+%10s\n", "+-----------------", "-------------", "--------",
                 "--------", "----------", "----------+");
 
         for (int i = 0; i < contactnumber.length; i++) {
 
-            System.out.printf("\t\t\t\t|%10s       |%5s   |%5s   |%5d   |%10.2f|%5d     |\n", idarray[i],
-                    contactnumber[i], tshirtsizearray[i], qtyarray[i], amountarray[i], Statusar[i]);
-            System.out.printf("\t\t\t\t|%10s       |%5s        |%5s   |%5s   |%5s     |%5s     |\n", "", "", "", "", "",
+            System.out.printf("\t\t|%10s       |%5s   |%5s   |%5d   |%10.2f|%10s|\n", idarray[i],
+                    contactnumber[i], tshirtsizearray[i], qtyarray[i], amountarray[i], statuStringar[i]);
+            System.out.printf("\t\t|%10s       |%5s        |%5s   |%5s   |%5s     |%10s|\n", "", "", "", "", "",
                     "", "", "");
 
         }
-        System.out.printf("\t\t\t\t%10s+%5s+%5s+%5s+%5s+%5s\n", "+-----------------", "-------------", "--------",
+        System.out.printf("\t\t%10s+%5s+%5s+%5s+%5s+%10s\n", "+-----------------", "-------------", "--------",
                 "--------", "----------", "----------+");
 
         System.out.println();
@@ -1560,6 +1451,7 @@ class finalcoursework {
 
         int main = input.nextInt();
         if (main == 0) {
+            clearConsole();
             main(null);
         } else {
             clearConsole();
@@ -1595,7 +1487,7 @@ class finalcoursework {
                     System.out.println("Status       : processing");
                 } else if (Statusar[i] == 1) {
                     System.out.println("Status       : Delivering");
-                } else if (Statusar[i] == 0) {
+                } else if (Statusar[i] == 2) {
                     System.out.println("Status       : Delivered");
                 }
 
@@ -1610,6 +1502,7 @@ class finalcoursework {
                         if (yesno == 'y' || yesno == 'Y') {
                             System.out.println("\n\t[1] Order Delivering");
                             System.out.println("\t[2] Order Delivered");
+                            System.out.println();
                             System.out.print("\nEnter option :");
                             int option = input.nextInt();
 
@@ -1664,12 +1557,12 @@ class finalcoursework {
                         break;
 
                     case 2:
-                        System.out.print("Can't change this order status,Order already delivered..!");
+                        System.out.println("Can't change this order status,Order already delivered..!");
 
                     default:
                         break;
                 }
-
+                System.out.println();
                 System.out.print("Do you want to change another order status? (y/n) :");
                 char yesno = input.next().charAt(0);
 
