@@ -44,6 +44,31 @@ class Customer{
         return status;
     }
 }
+class sort{
+    private int qty;
+    private String size;
+    private double amount;
+
+
+    public void setValues(String size, int qty, double amount){
+        
+        this.size=size;
+        this.qty=qty;
+        this.amount=amount;
+    }
+
+    public String getSize(){
+        return size;
+    }
+    public int getqty(){
+        return qty;
+    }
+    public double getamount(){
+        return amount;
+    }
+
+
+}
 class CustomerReport{
     
     private String Contactnum;
@@ -366,6 +391,7 @@ class finalcoursework {
 
     public static void storedata() {
         Customer[] tempCusArray = new Customer[CusArray.length+1];
+        
 
         for (int i = 0; i < CusArray.length; i++) {
             // copy previous data
@@ -706,7 +732,7 @@ class finalcoursework {
                 break;
             case 2:
                 clearConsole();
-                // ItemReports();
+                ItemReports();
                 break;
             case 3:
                 clearConsole();
@@ -861,13 +887,14 @@ class finalcoursework {
         Scanner input = new Scanner(System.in);
         CustomerReport[] viewReportar = new CustomerReport[CusArray.length];
         boolean[] processed = new boolean[CusArray.length];
+        int validCount = 0;
 
         for (int i = 0; i < CusArray.length; i++) {
             if (processed[i]) {
                 continue;
             }
 
-            viewReportar[i] = new CustomerReport();
+            viewReportar[validCount] = new CustomerReport();
             int tempqty = CusArray[i].getqty();
             double tempamount = CusArray[i].getamount();
             processed[i] = true;
@@ -880,9 +907,9 @@ class finalcoursework {
                 }
             }
 
-            viewReportar[i].setValues(CusArray[i].getContactnum(),tempqty,tempamount);
+            viewReportar[validCount].setValues(CusArray[i].getContactnum(),tempqty,tempamount);
 
-
+            validCount++;
         }
 
         System.out.printf("\t\t%15s+%8s+%14s\n", "+--------------------", "--------------",
@@ -892,7 +919,7 @@ class finalcoursework {
         System.out.printf("\t\t%15s+%8s+%14s\n", "+--------------------", "--------------",
                 "-------------------+");
 
-        for (int i = 0; i < CusArray.length; i++) {
+        for (int i = 0; i < validCount; i++) {
              
             System.out.printf("\t\t| %19s|%14d|%19f|\n",viewReportar[i].getContactnum(), viewReportar[i].getqty(),
             viewReportar[i].getamount());
@@ -940,12 +967,14 @@ class finalcoursework {
 
         allcustomer[] allCus = new allcustomer[CusArray.length];
         boolean[] processed = new boolean[CusArray.length];
+        int validCount = 0;
 
         for (int i = 0; i < CusArray.length; i++) {
             if (processed[i]) {
                 continue;
             }
 
+            allCus[validCount] = new allcustomer();
             int Mcount = 0;
             int XScount = 0;
             int Scount = 0;
@@ -1002,8 +1031,8 @@ class finalcoursework {
                 }
             }
 
-            tshize2Darr[i] = Integer.parseInt(contactnumber[i]);
-            tshize2Darr[i][7] = (int) tempamount;
+           allCus[validCount].setValues(CusArray[i].getContactnum(), XScount, Scount, Mcount, Lcount, XLcount, XXLcount, tempamount);
+           validCount++;
 
         }
 
@@ -1019,14 +1048,12 @@ class finalcoursework {
                 "--------", "--------", "--------", "--------", "--------", "---------------+");
         ;
 
-        for (int i = 0; i < tshize2Darr.length; i++) {
-            if (tshize2Darr[i][0] != 0) {
-                System.out.printf("\t\t|%010d               |%5d   |%5d   |%5d   |%5d   |%5d   |%5d   |%12d   | \n",
-                        tshize2Darr[i][0], tshize2Darr[i][1], tshize2Darr[i][2], tshize2Darr[i][3], tshize2Darr[i][4],
-                        tshize2Darr[i][5], tshize2Darr[i][6], tshize2Darr[i][7]);
+        for (int i = 0; i < validCount; i++) {
+            
+                System.out.printf("\t\t|%10s               |%5d   |%5d   |%5d   |%5d   |%5d   |%5d   |%12f   | \n",allCus[i].getContactnum(), allCus[i].getXS(), allCus[i].getS(), allCus[i].getM(), allCus[i].getL(),allCus[i].getXL(), allCus[i].getXXL(), allCus[i].getamount());
                 System.out.printf("\t\t|%10s               |%5s   |%5s   |%5s   |%5s   |%5s   |%5s   |%12s   | \n",
                         "", "", "", "", "", "", "", "");
-            }
+            
 
         }
         System.out.printf("\t\t%10s+%5s+%5s+%5s+%5s+%5s+%5s+%12s \n", "+-------------------------", "--------",
@@ -1045,167 +1072,161 @@ class finalcoursework {
         }
     }
 
-    // public static void ItemReports() {
-    //     System.out.println("  _____ _                   _____                       _       ");
-    //     System.out.println(" |_   _| |                 |  __ \\                     | |      ");
-    //     System.out.println("   | | | |_ ___ _ __ ___   | |__) |___ _ __   ___  _ __| |_ ___ ");
-    //     System.out.println("   | | | __/ _ \\ '_ ` _ \\  |  _  // _ \\ '_ \\ / _ \\| '__| __/ __|");
-    //     System.out.println("  _| |_| ||  __/ | | | | | | | \\ \\  __/ |_) | (_) | |  | |_\\__ \\");
-    //     System.out.println(" |_____|\\__\\___|_| |_| |_| |_|  \\_\\___| .__/ \\___/|_|   \\__|___/");
-    //     System.out.println("                                      | |                       ");
-    //     System.out.println("                                      |_|                       ");
+    public static void ItemReports() {
+        System.out.println("  _____ _                   _____                       _       ");
+        System.out.println(" |_   _| |                 |  __ \\                     | |      ");
+        System.out.println("   | | | |_ ___ _ __ ___   | |__) |___ _ __   ___  _ __| |_ ___ ");
+        System.out.println("   | | | __/ _ \\ '_ ` _ \\  |  _  // _ \\ '_ \\ / _ \\| '__| __/ __|");
+        System.out.println("  _| |_| ||  __/ | | | | | | | \\ \\  __/ |_) | (_) | |  | |_\\__ \\");
+        System.out.println(" |_____|\\__\\___|_| |_| |_| |_|  \\_\\___| .__/ \\___/|_|   \\__|___/");
+        System.out.println("                                      | |                       ");
+        System.out.println("                                      |_|                       ");
 
-    //     Scanner input = new Scanner(System.in);
-    //     System.out.println("\t[1] Best Selling Categories sorted by Qty");
-    //     System.out.println("\t[2] Best Selling Categories Sorted by amount");
-    //     System.out.println();
-    //     System.out.print("Enter option :");
-    //     int option = input.nextInt();
+        Scanner input = new Scanner(System.in);
+        System.out.println("\t[1] Best Selling Categories sorted by Qty");
+        System.out.println("\t[2] Best Selling Categories Sorted by amount");
+        System.out.println();
+        System.out.print("Enter option :");
+        int option = input.nextInt();
 
-    //     switch (option) {
-    //         case 1:
-    //             clearConsole();
-    //             sortqty();
-    //             break;
-    //         case 2:
-    //             clearConsole();
-    //             sortamount();
-    //             break;
+        switch (option) {
+            case 1:
+                clearConsole();
+                sortqty();
+                break;
+            case 2:
+                clearConsole();
+                // sortamount();
+                break;
 
-    //         default:
-    //             clearConsole();
-    //             ItemReports();
-    //             break;
-    //     }
+            default:
+                clearConsole();
+                // ItemReports();
+                break;
+        }
 
-    // }
+    }
 
-    // public static void sortqty() {
-    //     System.out.println("   _____            _           _   ____           ____  _         ");
-    //     System.out.println("  / ____|          | |         | | |  _ \\         / __ \\| |        ");
-    //     System.out.println(" | (___   ___  _ __| |_ ___  __| | | |_) |_   _  | |  | | |_ _   _ ");
-    //     System.out.println("  \\___ \\ / _ \\| '__| __/ _ \\/ _` | |  _ <| | | | | |  | | __| | | |");
-    //     System.out.println("  ____) | (_) | |  | ||  __/ (_| | | |_) | |_| | | |__| | |_| |_| |");
-    //     System.out.println(" |_____/ \\___/|_|   \\__\\___|\\__,_| |____/ \\__, |  \\___\\_\\\\__|\\__, |");
-    //     System.out.println("                                           __/ |              __/ |");
-    //     System.out.println("                                          |___/              |___/ ");
+    public static void sortqty() {
+        System.out.println("   _____            _           _   ____           ____  _         ");
+        System.out.println("  / ____|          | |         | | |  _ \\         / __ \\| |        ");
+        System.out.println(" | (___   ___  _ __| |_ ___  __| | | |_) |_   _  | |  | | |_ _   _ ");
+        System.out.println("  \\___ \\ / _ \\| '__| __/ _ \\/ _` | |  _ <| | | | | |  | | __| | | |");
+        System.out.println("  ____) | (_) | |  | ||  __/ (_| | | |_) | |_| | | |__| | |_| |_| |");
+        System.out.println(" |_____/ \\___/|_|   \\__\\___|\\__,_| |____/ \\__, |  \\___\\_\\\\__|\\__, |");
+        System.out.println("                                           __/ |              __/ |");
+        System.out.println("                                          |___/              |___/ ");
 
-    //     System.out.println("\n\n________________________________________________________________________\n\n");
+        System.out.println("\n\n________________________________________________________________________\n\n");
 
-    //     System.out.println();
-    //     String[][] qty2Darr = new String[6][3];
-    //     boolean[] processed = new boolean[contactnumber.length];
-    //     qty2Darr[0][0] = "M";
-    //     qty2Darr[1][0] = "XL";
-    //     qty2Darr[2][0] = "XS";
-    //     qty2Darr[3][0] = "S";
-    //     qty2Darr[4][0] = "XXL";
-    //     qty2Darr[5][0] = "L";
+        System.out.println();
+        sort[] sortqty = new sort[6];
+        boolean[] processed = new boolean[CusArray.length];
 
-    //     int Mqty = 0;
-    //     int XLqty = 0;
-    //     int XSqty = 0;
-    //     int Sqty = 0;
-    //     int XXLqty = 0;
-    //     int Lqty = 0;
 
-    //     int Mtotal = 0;
-    //     int XLtotal = 0;
-    //     int XStotal = 0;
-    //     int Stotal = 0;
-    //     int XXLtotal = 0;
-    //     int Ltotal = 0;
 
-    //     qty2Darr[0][1] = "0";
-    //     qty2Darr[1][1] = "0";
-    //     qty2Darr[2][1] = "0";
-    //     qty2Darr[3][1] = "0";
-    //     qty2Darr[4][1] = "0";
-    //     qty2Darr[5][1] = "0";
-    //     // int validCount = 0;
+        int Mqty=0;
+        int XSqty=0;
+        int Sqty=0;
+        int Lqty=0;
+        int XLqty=0;
+        int XXLqty=0;
 
-    //     for (int i = 0; i < contactnumber.length; i++) {
+        double Mtotal=0;
+        double XStotal=0;
+        double Stotal=0;
+        double Ltotal=0;
+        double XLtotal=0;
+        double XXLtotal=0;
 
-    //         if (tshirtsizearray[i].equals("M")) {
-    //             Mqty += qtyarray[i];
-    //             qty2Darr[0][1] = String.valueOf(Mqty);
+        for (int i = 0; i < CusArray.length; i++) {
 
-    //         } else if (tshirtsizearray[i].equals("XL")) {
-    //             XLqty += qtyarray[i];
-    //             qty2Darr[1][1] = String.valueOf(XLqty);
+            if (CusArray[i].getTshirtsize().equals("M")) {
+                Mqty += CusArray[i].getqty();
+                
 
-    //         } else if (tshirtsizearray[i].equals("XS")) {
-    //             XSqty += qtyarray[i];
-    //             qty2Darr[2][1] = String.valueOf(XSqty);
+            } else if (CusArray[i].getTshirtsize().equals("XL")) {
+                XLqty += CusArray[i].getqty();
+                
 
-    //         } else if (tshirtsizearray[i].equals("S")) {
-    //             Sqty += qtyarray[i];
-    //             qty2Darr[3][1] = String.valueOf(Sqty);
+            } else if (CusArray[i].getTshirtsize().equals("XS")) {
+                XSqty += CusArray[i].getqty();
+                
 
-    //         } else if (tshirtsizearray[i].equals("XXL")) {
-    //             XXLqty += qtyarray[i];
-    //             qty2Darr[4][1] = String.valueOf(XXLqty);
+            } else if (CusArray[i].getTshirtsize().equals("S")) {
+                Sqty += CusArray[i].getqty();
+                
 
-    //         } else if (tshirtsizearray[i].equals("L")) {
-    //             Lqty += qtyarray[i];
-    //             qty2Darr[5][1] = String.valueOf(Lqty);
-    //         }
+            } else if (CusArray[i].getTshirtsize().equals("XXL")) {
+                XXLqty += CusArray[i].getqty();
+                
 
-    //     }
-    //     Mtotal = Mqty * 900;
-    //     XLtotal = XLqty * 1100;
-    //     XStotal = XSqty * 600;
-    //     Stotal = Sqty * 900;
-    //     Ltotal = Lqty * 1000;
-    //     XXLtotal = XXLqty * 1200;
+            } else if (CusArray[i].getTshirtsize().equals("L")) {
+                Lqty += CusArray[i].getqty();
+                
+            }
 
-    //     qty2Darr[0][2] = String.valueOf(Mtotal);
-    //     qty2Darr[1][2] = String.valueOf(XLtotal);
-    //     qty2Darr[2][2] = String.valueOf(XStotal);
-    //     qty2Darr[3][2] = String.valueOf(Stotal);
-    //     qty2Darr[4][2] = String.valueOf(XXLtotal);
-    //     qty2Darr[5][2] = String.valueOf(Ltotal);
+        }
+        Mtotal = Mqty * 900;
+        XLtotal = XLqty * 1100;
+        XStotal = XSqty * 600;
+        Stotal = Sqty * 900;
+        Ltotal = Lqty * 1000;
+        XXLtotal = XXLqty * 1200;
+
+        sortqty[0] =new sort();
+        sortqty[0].setValues("XS", XSqty, XStotal);
+        sortqty[1] =new sort();
+        sortqty[1].setValues("S", Sqty, Stotal);
+        sortqty[2] =new sort();
+        sortqty[2].setValues("M", Mqty, Mtotal);
+        sortqty[3] =new sort();
+        sortqty[3].setValues("L", Lqty, Ltotal);
+        sortqty[4] =new sort();
+        sortqty[4].setValues("XL", XLqty, XLtotal);
+        sortqty[5] =new sort();
+        sortqty[5].setValues("XXL", XXLqty, XXLtotal);
 
     //     // for (int i = 0; i < qty2Darr.length; i++) {
     //     // System.out.println(Arrays.toString(qty2Darr[i]));
     //     // }
 
-    //     for (int i = 5; i > 0; i--) {
+        for (int i = 5; i > 0; i--) {
 
-    //         for (int j = 0; j < i; j++) {
-    //             if (Integer.parseInt(qty2Darr[j][1]) < Integer.parseInt(qty2Darr[j + 1][1])) {
-    //                 String[] temp = qty2Darr[j];
-    //                 qty2Darr[j] = qty2Darr[j + 1];
-    //                 qty2Darr[j + 1] = temp;
-    //             }
-    //         }
-    //     }
+            for (int j = 0; j < i; j++) {
+                if (sortqty[j].getqty() < sortqty[j+1].getqty()) {
+                    sort temp = sortqty[j];
+                    sortqty[j] = sortqty[j+1];
+                    sortqty[j+1] = temp;
+                }
+            }
+        }
 
-    //     System.out.printf("\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
-    //     System.out.printf("\t\t|%15s %8s %14s\n", "      Size          |", "     QTY     |", "    Amount        |");
-    //     System.out.printf("\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
+        System.out.printf("\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
+        System.out.printf("\t\t|%15s %8s %14s\n", "      Size          |", "     QTY     |", "    Amount        |");
+        System.out.printf("\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
 
-    //     for (int i = 0; i < qty2Darr.length; i++) {
-    //         System.out.printf("\t\t| %15s    | %8s     |  %14s   |\n", qty2Darr[i][0], qty2Darr[i][1],
-    //                 qty2Darr[i][2]);
-    //         System.out.printf("\t\t| %15s    |%8s      |  %14s   |\n", "", "", "");
+        for (int i = 0; i < sortqty.length; i++) {
+            System.out.printf("\t\t| %15s    | %8s     |  %14s   |\n",sortqty[i].getSize(), sortqty[i].getqty(),
+            sortqty[i].getamount());
+            System.out.printf("\t\t| %15s    |%8s      |  %14s   |\n", "", "", "");
 
-    //     }
-    //     System.out.printf("\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
+        }
+        System.out.printf("\t\t%15s+%8s+%14s\n", "+--------------------", "--------------", "-------------------+");
 
-    //     System.out.println();
-    //     System.out.print("To access the Main Menu,Please enter 0 :");
-    //     Scanner input = new Scanner(System.in);
-    //     int main = input.nextInt();
-    //     if (main == 0) {
-    //         clearConsole();
-    //         main(null);
-    //     } else {
-    //         clearConsole();
-    //         sortqty();
-    //     }
+        System.out.println();
+        System.out.print("To access the Main Menu,Please enter 0 :");
+        Scanner input = new Scanner(System.in);
+        int main = input.nextInt();
+        if (main == 0) {
+            clearConsole();
+            main(null);
+        } else {
+            clearConsole();
+            sortqty();
+        }
 
-    // }
+    }
 
     // public static void sortamount() {
     //     System.out
