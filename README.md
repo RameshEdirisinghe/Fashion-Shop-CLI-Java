@@ -21,7 +21,7 @@ You can search for an order by:
 ### Generating Order Reports
 Select the option to generate a report. The application will output a comprehensive report detailing all orders placed within a specified timeframe.
 
-![image alt](https://github.com/RameshEdirisinghe/Word-Play-Game/blob/master/Screenshot%202024-10-19%20033546.png?raw=true)
+![image alt](https://github.com/RameshEdirisinghe/Fashion-Shop-Java/blob/915c362f2d92a0276358660f005e7157978f886b/Screenshot%202024-10-27%20010312.png?raw=true)
 
 
 ## Contact
