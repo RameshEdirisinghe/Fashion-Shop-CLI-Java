@@ -10,13 +10,7 @@ class Customer{
     public Customer(){
 
     }
-    // public Customer(String OderId,String Contactnum,String Tshirtsize, int qty, double amount){
-    //     this.OderId=OderId;
-    //     this.Contactnum=Contactnum;
-    //     this.Tshirtsize=Tshirtsize;
-    //     this.qty=qty;
-    //     this.amount=amount;
-    // }
+
     public void setValues(String OderId,String Contactnum,String Tshirtsize, int qty, double amount, int status){
         this.OderId=OderId;
         this.Contactnum=Contactnum;
