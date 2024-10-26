@@ -147,7 +147,7 @@ class allcustomer{
     }
     
 }
-class finalcoursework {
+class fashionshop {
     public static Customer[] CusArray = new Customer[0];
 
     static int orderNumber = 0;
@@ -238,7 +238,7 @@ class finalcoursework {
                 break;
             case 5:
                 clearConsole();
-                // setorder();
+                setorder();
                 break;
             case 6:
                 clearConsole();
@@ -1641,6 +1641,22 @@ class finalcoursework {
             }
         }
 
+        if (isfound == false) {
+            System.out.println("\tInvalid Input...");
+            System.out.print("Do you want to enter another Oder ID? (y/n) :");
+            char yesno = input.next().charAt(0);
+
+            if (yesno == 'y' || yesno == 'Y') {
+                clearConsole();
+                setorder();
+            } else if (yesno == 'N' || yesno == 'n') {
+                clearConsole();
+                main(null);
+            } else {
+                System.out.print("\033[1A");
+            }
+        }
+
     }
 
     public final static void clearConsole() {
@@ -1659,4 +1675,3 @@ class finalcoursework {
         }
     }
 }
-
