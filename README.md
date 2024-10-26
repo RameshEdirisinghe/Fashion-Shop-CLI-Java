@@ -21,6 +21,8 @@ You can search for an order by:
 ### Generating Order Reports
 Select the option to generate a report. The application will output a comprehensive report detailing all orders placed within a specified timeframe.
 
+![image alt](https://github.com/RameshEdirisinghe/Word-Play-Game/blob/master/Screenshot%202024-10-19%20033546.png?raw=true)
+
 
 ## Contact
 For any questions or inquiries, please contact <a href="ranganathedirisingha.com">ranganathedirisingha.com</a>.
