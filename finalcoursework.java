@@ -237,7 +237,7 @@ class finalcoursework {
                 break;
             default:
                 clearConsole();
-                main(args);// if an invalid number is entered
+                main(args);
                 break;
         }
 
